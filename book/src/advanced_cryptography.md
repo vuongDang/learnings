@@ -51,10 +51,48 @@
 - Group Signatures (anonymity within a group)
 - Ring Signatures (signer hidden in a set)
 - Threshold Signatures (requires multiple parties)
-- Attribute-Based Encryption ()
+- Attribute-Based Encryption
 
 ### Other Primitives
 
 - Verifiable Delay Functions (VDFs)
 - Verifiable Random Functions (VRFs)
 - Accumulators (compact set membership proofs)
+
+## Mind Map
+
+Advanced Cryptographic Primitives
+│
+├── Privacy-Preserving Proofs
+│ ├── Zero-Knowledge Proofs (ZKPs)
+│ │ ├── zk-SNARKs (succinct, non-interactive)
+│ │ ├── zk-STARKs (transparent, post-quantum)
+│ │ ├── Bulletproofs (range proofs, efficient)
+│ │ └── Commit-and-Prove (commitments + ZKPs)
+│ │
+│ └── Commitments
+│ ├── Hash-based
+│ └── Pedersen commitments (used in ZKPs, Bulletproofs)
+│
+├── Multi-Party Computation (MPC)
+│ ├── Secret Sharing (Shamir’s, threshold crypto)
+│ ├── Oblivious Transfer (building block)
+│ ├── Garbled Circuits
+│ └── Applications: private analytics, threshold signatures
+│
+├── Homomorphic & Functional Encryption
+│ ├── Partially HE (RSA, Paillier)
+│ ├── Fully Homomorphic Encryption (FHE)
+│ ├── Functional Encryption (restricted outputs only)
+│ └── Applications: encrypted ML, secure cloud computing
+│
+├── Advanced Signatures
+│ ├── Group Signatures (anonymity within a group)
+│ ├── Ring Signatures (signer hidden in a set, e.g., Monero)
+│ ├── Threshold Signatures (requires multiple parties)
+│ └── Attribute-Based Encryption (ABE: policy-based access)
+│
+└── Other Primitives
+├── Verifiable Delay Functions (VDFs)
+├── Verifiable Random Functions (VRFs)
+└── Accumulators (compact set membership proofs)
