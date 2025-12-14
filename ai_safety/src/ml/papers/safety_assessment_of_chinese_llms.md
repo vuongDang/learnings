@@ -6,7 +6,7 @@ Propose a safety assessment benchmark for LLMs:
 - list of 8 safety scenarios 
 - list of 6 different instruction-attacks
 - create a set of safety prompts by combining these 2 lists called _SafetyPrompts_ (~ 100k prompts)
-- use another llm to evaluate whether the generated responsed are safe 
+- use another llm to evaluate whether the generated responses are safe 
 - rank the 15 tested models
 
 ## Safety scenarios

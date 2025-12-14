@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-92da47db.js";
+            window.path_to_searchindex_js = "searchindex-7fe30471.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-0c65fe18.js"></script>
+        <script src="toc-24cdb5e2.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -175,135 +175,8 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="-14-day-machine-learning-learning-plan"><a class="header" href="#-14-day-machine-learning-learning-plan">📘 14-Day Machine Learning Learning Plan</a></h1>
-<p>For Rust developers contributing to safetensors or Burn</p>
-<p>This plan helps you quickly build the ML fundamentals you need to contribute effectively — without diving into heavy math or deep theory.
-Focus: tensors, models, formats, inference, file structures.</p>
-<h2 id="-overview"><a class="header" href="#-overview">🗓 Overview</a></h2>
-<p>Total duration: 14 days</p>
-<p>Daily investment: 45–60 minutes</p>
-<p>Goal: Understand enough ML to confidently contribute to safetensors, Burn, and Rust ML tooling.</p>
-<h2 id="-week-1--foundations-tensors--transformers"><a class="header" href="#-week-1--foundations-tensors--transformers">🧠 Week 1 — Foundations: Tensors &amp; Transformers</a></h2>
-<h3 id="day-1--the-illustrated-transformer"><a class="header" href="#day-1--the-illustrated-transformer">Day 1 — The Illustrated Transformer</a></h3>
-<p>📝 Goal: Understand high-level model architecture &amp; attention.
-🔗 Resource:</p>
-<p><a href="https://jalammar.github.io/illustrated-transformer/">https://jalammar.github.io/illustrated-transformer/</a></p>
-<p>Focus:</p>
-<p>what “attention” means</p>
-<p>how inputs/outputs flow</p>
-<p>high-level model structure</p>
-<h3 id="day-2--the-illustrated-gpt-2"><a class="header" href="#day-2--the-illustrated-gpt-2">Day 2 — The Illustrated GPT-2</a></h3>
-<p>📝 Goal: Learn about tokenization, embeddings, and weights.
-🔗 Resource:</p>
-<p><a href="https://jalammar.github.io/illustrated-gpt2/">https://jalammar.github.io/illustrated-gpt2/</a></p>
-<p>Focus:</p>
-<p>tokens</p>
-<p>tensor shapes</p>
-<p>model parameters</p>
-<p>positional embeddings</p>
-<h3 id="day-3--safetensors-format-basics"><a class="header" href="#day-3--safetensors-format-basics">Day 3 — safetensors Format Basics</a></h3>
-<p>📝 Goal: Understand how tensor files store model weights.
-🔗 Resources:</p>
-<p><a href="https://huggingface.co/docs/safetensors/index">https://huggingface.co/docs/safetensors/index</a></p>
-<p>safetensors Rust repo: https://github.com/huggingface/safetensors</p>
-<p>Focus:</p>
-<p>header</p>
-<p>metadata</p>
-<p>tensor data</p>
-<p>safety properties</p>
-<h3 id="day-4--burn-tensors--devices"><a class="header" href="#day-4--burn-tensors--devices">Day 4 — Burn: Tensors &amp; Devices</a></h3>
-<p>📝 Goal: Understand how Rust represents tensors.
-🔗 Resource:</p>
-<p><a href="https://burn.dev/book">https://burn.dev/book</a></p>
-<p>Read:</p>
-<p>Chapter 1: Overview</p>
-<p>Chapter 3: Tensors</p>
-<p>Chapter 5: Modules</p>
-<h3 id="day-5--karpathy-transformers-explained"><a class="header" href="#day-5--karpathy-transformers-explained">Day 5 — Karpathy: Transformers Explained</a></h3>
-<p>📝 Goal: Understand transformers at a systems level.
-🔗 Resource:</p>
-<p><a href="https://www.youtube.com/playlist?list=PLEw8N7FUsmtGhGz5fw5H5mtPQPfdVCAWD">https://www.youtube.com/playlist?list=PLEw8N7FUsmtGhGz5fw5H5mtPQPfdVCAWD</a></p>
-<p>(watch the Transformer and Attention videos)</p>
-<h3 id="day-6--tensor-basics-shapes-dtypes-layout"><a class="header" href="#day-6--tensor-basics-shapes-dtypes-layout">Day 6 — Tensor Basics (Shapes, Dtypes, Layout)</a></h3>
-<p>📝 Goal: Know what shapes/dtypes mean in practice.
-🔗 Resources:</p>
-<p>PyTorch tensor tutorial: <a href="https://pytorch.org/tutorials/beginner/tensors_tutorial.html">https://pytorch.org/tutorials/beginner/tensors_tutorial.html</a></p>
-<p>Burn tensor docs: <a href="https://burn.dev/book/guide/tensor.html">https://burn.dev/book/guide/tensor.html</a></p>
-<h3 id="day-7--consolidation--review-day"><a class="header" href="#day-7--consolidation--review-day">Day 7 — Consolidation / Review Day</a></h3>
-<p>📝 Goal: Solidify understanding.</p>
-<p>Suggested activities:</p>
-<p>rewatch parts of Day 1–2</p>
-<p>draw a model block diagram</p>
-<p>inspect actual safetensors files (small ones)</p>
-<p>🔬 Week 2 — Systems-Level ML: Weights, Formats, Inference</p>
-<h3 id="day-8--how-ml-frameworks-saveload-weights"><a class="header" href="#day-8--how-ml-frameworks-saveload-weights">Day 8 — How ML Frameworks Save/Load Weights</a></h3>
-<p>📝 Goal: Learn the lifecycle of model serialization.
-🔗 Resources:</p>
-<p>PyTorch state_dict tutorial: <a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html">https://pytorch.org/tutorials/beginner/saving_loading_models.html</a></p>
-<p>TensorFlow checkpoints (skim): <a href="https://www.tensorflow.org/guide/checkpoint">https://www.tensorflow.org/guide/checkpoint</a></p>
-<h3 id="day-9--burn-loading-and-using-model-weights"><a class="header" href="#day-9--burn-loading-and-using-model-weights">Day 9 — Burn: Loading and Using Model Weights</a></h3>
-<p>📝 Goal: Understand how Rust code loads parameters.
-🔗 Resource:</p>
-<p>[Burn examples: https://github.com/tracel-ai/burn/tree/main/examples](Burn examples: https://github.com/tracel-ai/burn/tree/main/examples)</p>
-<p>Look at how models load weights and run inference.</p>
-<h3 id="day-10--hands-on-inspect-a-models-weights"><a class="header" href="#day-10--hands-on-inspect-a-models-weights">Day 10 — Hands-On: Inspect a Model’s Weights</a></h3>
-<p>📝 Goal: Print shapes of real tensors to connect theory to practice.
-🔗 Resources:</p>
-<p>Tutorial model (PyTorch): <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html</a></p>
-<p>(you don’t need to train, just load)</p>
-<p>Use Python:</p>
-<p>import torch
-sd = torch.hub.load_state_dict_from_url(…)
-for k, v in sd.items():
-print(k, v.shape)</p>
-<h3 id="day-11--safetensors-rust-code-parser--files"><a class="header" href="#day-11--safetensors-rust-code-parser--files">Day 11 — safetensors Rust Code: Parser &amp; Files</a></h3>
-<p>📝 Goal: Understand safetensors internals before contributing.
-🔗 Resource:</p>
-<p><a href="https://github.com/huggingface/safetensors/tree/main/safetensors">https://github.com/huggingface/safetensors/tree/main/safetensors</a></p>
-<p>Inspect:</p>
-<p>src/serde.rs</p>
-<p>src/tensor.rs</p>
-<p>src/error.rs</p>
-<p>Focus on reading the header parsing logic.</p>
-<h3 id="day-12--read-burn-or-candle-tensor-implementation"><a class="header" href="#day-12--read-burn-or-candle-tensor-implementation">Day 12 — Read Burn or Candle Tensor Implementation</a></h3>
-<p>📝 Goal: Understand how tensors are stored &amp; manipulated in Rust.</p>
-<p>🔗 Candle docs:</p>
-<p><a href="https://github.com/huggingface/candle/tree/main/docs">https://github.com/huggingface/candle/tree/main/docs</a></p>
-<p>Look at:</p>
-<p>tensors.md</p>
-<p>devices.md</p>
-<p>🔗 Burn docs (alternative):</p>
-<p><a href="https://burn.dev/book/guide/tensor.html">https://burn.dev/book/guide/tensor.html</a></p>
-<h3 id="day-13--identify-fuzzing-targets--contribution-areas"><a class="header" href="#day-13--identify-fuzzing-targets--contribution-areas">Day 13 — Identify Fuzzing Targets / Contribution Areas</a></h3>
-<p>📝 Goal: Prepare your future PR.
-Use your new ML understanding to list possible targets:</p>
-<p>For safetensors, examples:</p>
-<p>header parsing</p>
-<p>data offsets</p>
-<p>dtype mismatches</p>
-<p>metadata validity checks</p>
-<p>For Burn, examples:</p>
-<p>tensor ops</p>
-<p>model loaders</p>
-<p>file format handlers</p>
-<h3 id="day-14--create-your-issue-draft--contribution-plan"><a class="header" href="#day-14--create-your-issue-draft--contribution-plan">Day 14 — Create Your Issue Draft / Contribution Plan</a></h3>
-<p>📝 Goal: Turn your learning into a concrete contribution.</p>
-<p>Steps:</p>
-<p>Pick safetensors or Burn</p>
-<p>Write an issue titled:
-“Add fuzzing targets for X to improve safety and reliability”</p>
-<p>Draft a PR with:</p>
-<p>1 fuzz target</p>
-<p>CI optional</p>
-<p>clear test cases</p>
-<p>This is your launchpad into the Rust ML ecosystem.</p>
-<p>🎉 Done!</p>
-<p>By the end of these 14 days, you’ll be able to:</p>
-<p>understand tensors and model weights</p>
-<p>read ML model files</p>
-<p>navigate safetensors or Burn internals</p>
-<p>identify valid fuzzing or robustness contributions</p>
-<p>open your first real PR</p>
+                        <h1 id="ai-safety"><a class="header" href="#ai-safety">AI Safety</a></h1>
+<p>MDBook to keep notes about my journey on ai safety.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="ai-security"><a class="header" href="#ai-security">AI-security</a></h1>
 <h2 id="categories"><a class="header" href="#categories">Categories</a></h2>
@@ -644,20 +517,166 @@ with short &amp; factual questions</li>
 <li>Designed for complex llm systems: llm agents, multi-agent, scaffolded workflows</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="-14-day-machine-learning-learning-plan"><a class="header" href="#-14-day-machine-learning-learning-plan">📘 14-Day Machine Learning Learning Plan</a></h1>
+<p>For Rust developers contributing to safetensors or Burn</p>
+<p>This plan helps you quickly build the ML fundamentals you need to contribute effectively — without diving into heavy math or deep theory.
+Focus: tensors, models, formats, inference, file structures.</p>
+<h2 id="-overview"><a class="header" href="#-overview">🗓 Overview</a></h2>
+<p>Total duration: 14 days</p>
+<p>Daily investment: 45–60 minutes</p>
+<p>Goal: Understand enough ML to confidently contribute to safetensors, Burn, and Rust ML tooling.</p>
+<h2 id="-week-1--foundations-tensors--transformers"><a class="header" href="#-week-1--foundations-tensors--transformers">🧠 Week 1 — Foundations: Tensors &amp; Transformers</a></h2>
+<h3 id="day-1--the-illustrated-transformer"><a class="header" href="#day-1--the-illustrated-transformer">Day 1 — The Illustrated Transformer</a></h3>
+<p>📝 Goal: Understand high-level model architecture &amp; attention.
+🔗 Resource:</p>
+<p><a href="https://jalammar.github.io/illustrated-transformer/">https://jalammar.github.io/illustrated-transformer/</a></p>
+<p>Focus:</p>
+<p>what “attention” means</p>
+<p>how inputs/outputs flow</p>
+<p>high-level model structure</p>
+<h3 id="day-2--the-illustrated-gpt-2"><a class="header" href="#day-2--the-illustrated-gpt-2">Day 2 — The Illustrated GPT-2</a></h3>
+<p>📝 Goal: Learn about tokenization, embeddings, and weights.
+🔗 Resource:</p>
+<p><a href="https://jalammar.github.io/illustrated-gpt2/">https://jalammar.github.io/illustrated-gpt2/</a></p>
+<p>Focus:</p>
+<p>tokens</p>
+<p>tensor shapes</p>
+<p>model parameters</p>
+<p>positional embeddings</p>
+<h3 id="day-3--safetensors-format-basics"><a class="header" href="#day-3--safetensors-format-basics">Day 3 — safetensors Format Basics</a></h3>
+<p>📝 Goal: Understand how tensor files store model weights.
+🔗 Resources:</p>
+<p><a href="https://huggingface.co/docs/safetensors/index">https://huggingface.co/docs/safetensors/index</a></p>
+<p>safetensors Rust repo: https://github.com/huggingface/safetensors</p>
+<p>Focus:</p>
+<p>header</p>
+<p>metadata</p>
+<p>tensor data</p>
+<p>safety properties</p>
+<h3 id="day-4--burn-tensors--devices"><a class="header" href="#day-4--burn-tensors--devices">Day 4 — Burn: Tensors &amp; Devices</a></h3>
+<p>📝 Goal: Understand how Rust represents tensors.
+🔗 Resource:</p>
+<p><a href="https://burn.dev/book">https://burn.dev/book</a></p>
+<p>Read:</p>
+<p>Chapter 1: Overview</p>
+<p>Chapter 3: Tensors</p>
+<p>Chapter 5: Modules</p>
+<h3 id="day-5--karpathy-transformers-explained"><a class="header" href="#day-5--karpathy-transformers-explained">Day 5 — Karpathy: Transformers Explained</a></h3>
+<p>📝 Goal: Understand transformers at a systems level.
+🔗 Resource:</p>
+<p><a href="https://www.youtube.com/playlist?list=PLEw8N7FUsmtGhGz5fw5H5mtPQPfdVCAWD">https://www.youtube.com/playlist?list=PLEw8N7FUsmtGhGz5fw5H5mtPQPfdVCAWD</a></p>
+<p>(watch the Transformer and Attention videos)</p>
+<h3 id="day-6--tensor-basics-shapes-dtypes-layout"><a class="header" href="#day-6--tensor-basics-shapes-dtypes-layout">Day 6 — Tensor Basics (Shapes, Dtypes, Layout)</a></h3>
+<p>📝 Goal: Know what shapes/dtypes mean in practice.
+🔗 Resources:</p>
+<p>PyTorch tensor tutorial: <a href="https://pytorch.org/tutorials/beginner/tensors_tutorial.html">https://pytorch.org/tutorials/beginner/tensors_tutorial.html</a></p>
+<p>Burn tensor docs: <a href="https://burn.dev/book/guide/tensor.html">https://burn.dev/book/guide/tensor.html</a></p>
+<h3 id="day-7--consolidation--review-day"><a class="header" href="#day-7--consolidation--review-day">Day 7 — Consolidation / Review Day</a></h3>
+<p>📝 Goal: Solidify understanding.</p>
+<p>Suggested activities:</p>
+<p>rewatch parts of Day 1–2</p>
+<p>draw a model block diagram</p>
+<p>inspect actual safetensors files (small ones)</p>
+<p>🔬 Week 2 — Systems-Level ML: Weights, Formats, Inference</p>
+<h3 id="day-8--how-ml-frameworks-saveload-weights"><a class="header" href="#day-8--how-ml-frameworks-saveload-weights">Day 8 — How ML Frameworks Save/Load Weights</a></h3>
+<p>📝 Goal: Learn the lifecycle of model serialization.
+🔗 Resources:</p>
+<p>PyTorch state_dict tutorial: <a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html">https://pytorch.org/tutorials/beginner/saving_loading_models.html</a></p>
+<p>TensorFlow checkpoints (skim): <a href="https://www.tensorflow.org/guide/checkpoint">https://www.tensorflow.org/guide/checkpoint</a></p>
+<h3 id="day-9--burn-loading-and-using-model-weights"><a class="header" href="#day-9--burn-loading-and-using-model-weights">Day 9 — Burn: Loading and Using Model Weights</a></h3>
+<p>📝 Goal: Understand how Rust code loads parameters.
+🔗 Resource:</p>
+<p>[Burn examples: https://github.com/tracel-ai/burn/tree/main/examples](Burn examples: https://github.com/tracel-ai/burn/tree/main/examples)</p>
+<p>Look at how models load weights and run inference.</p>
+<h3 id="day-10--hands-on-inspect-a-models-weights"><a class="header" href="#day-10--hands-on-inspect-a-models-weights">Day 10 — Hands-On: Inspect a Model’s Weights</a></h3>
+<p>📝 Goal: Print shapes of real tensors to connect theory to practice.
+🔗 Resources:</p>
+<p>Tutorial model (PyTorch): <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html</a></p>
+<p>(you don’t need to train, just load)</p>
+<p>Use Python:</p>
+<p>import torch
+sd = torch.hub.load_state_dict_from_url(…)
+for k, v in sd.items():
+print(k, v.shape)</p>
+<h3 id="day-11--safetensors-rust-code-parser--files"><a class="header" href="#day-11--safetensors-rust-code-parser--files">Day 11 — safetensors Rust Code: Parser &amp; Files</a></h3>
+<p>📝 Goal: Understand safetensors internals before contributing.
+🔗 Resource:</p>
+<p><a href="https://github.com/huggingface/safetensors/tree/main/safetensors">https://github.com/huggingface/safetensors/tree/main/safetensors</a></p>
+<p>Inspect:</p>
+<p>src/serde.rs</p>
+<p>src/tensor.rs</p>
+<p>src/error.rs</p>
+<p>Focus on reading the header parsing logic.</p>
+<h3 id="day-12--read-burn-or-candle-tensor-implementation"><a class="header" href="#day-12--read-burn-or-candle-tensor-implementation">Day 12 — Read Burn or Candle Tensor Implementation</a></h3>
+<p>📝 Goal: Understand how tensors are stored &amp; manipulated in Rust.</p>
+<p>🔗 Candle docs:</p>
+<p><a href="https://github.com/huggingface/candle/tree/main/docs">https://github.com/huggingface/candle/tree/main/docs</a></p>
+<p>Look at:</p>
+<p>tensors.md</p>
+<p>devices.md</p>
+<p>🔗 Burn docs (alternative):</p>
+<p><a href="https://burn.dev/book/guide/tensor.html">https://burn.dev/book/guide/tensor.html</a></p>
+<h3 id="day-13--identify-fuzzing-targets--contribution-areas"><a class="header" href="#day-13--identify-fuzzing-targets--contribution-areas">Day 13 — Identify Fuzzing Targets / Contribution Areas</a></h3>
+<p>📝 Goal: Prepare your future PR.
+Use your new ML understanding to list possible targets:</p>
+<p>For safetensors, examples:</p>
+<p>header parsing</p>
+<p>data offsets</p>
+<p>dtype mismatches</p>
+<p>metadata validity checks</p>
+<p>For Burn, examples:</p>
+<p>tensor ops</p>
+<p>model loaders</p>
+<p>file format handlers</p>
+<h3 id="day-14--create-your-issue-draft--contribution-plan"><a class="header" href="#day-14--create-your-issue-draft--contribution-plan">Day 14 — Create Your Issue Draft / Contribution Plan</a></h3>
+<p>📝 Goal: Turn your learning into a concrete contribution.</p>
+<p>Steps:</p>
+<p>Pick safetensors or Burn</p>
+<p>Write an issue titled:
+“Add fuzzing targets for X to improve safety and reliability”</p>
+<p>Draft a PR with:</p>
+<p>1 fuzz target</p>
+<p>CI optional</p>
+<p>clear test cases</p>
+<p>This is your launchpad into the Rust ML ecosystem.</p>
+<p>🎉 Done!</p>
+<p>By the end of these 14 days, you’ll be able to:</p>
+<p>understand tensors and model weights</p>
+<p>read ML model files</p>
+<p>navigate safetensors or Burn internals</p>
+<p>identify valid fuzzing or robustness contributions</p>
+<p>open your first real PR</p>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="survey-on-ai"><a class="header" href="#survey-on-ai">Survey on ai</a></h1>
 <h4 id="prompt-packer-deceiving-llms-through-compositional-instruction-with-hidden-attacks"><a class="header" href="#prompt-packer-deceiving-llms-through-compositional-instruction-with-hidden-attacks"><a href="#prompt-packer-deceiving-llms-through-compositional-instruction-with-hidden-attacks-2023">Prompt Packer: Deceiving LLMs through Compositional Instruction with Hidden Attacks</a></a></h4>
 <p>Augmented prompt injection using  <strong>Compositional Instruction Attacks (CIA)</strong>.
 Uses an ai model to hide harmful prompt in an harmless one.</p>
 <h4 id="safety-assessment-of-chinese-large-language-model"><a class="header" href="#safety-assessment-of-chinese-large-language-model"><a href="#safety-assessment-of-chinese-large-language-model-2023">Safety Assessment of Chinese Large Language Model</a></a></h4>
-<p>Safety assessment of ai models.</p>
-<pre class="mermaid">graph TD
-  A(prompt packer)
-  A--&gt;B
-  A--&gt;C
-  B--&gt;D
-  C--&gt;D
-</pre>
-
+<p>Safety assessment of ai models by combining safety scenarios and jailbreak attacks.</p>
+<h4 id="do-anything-now-characterizing-and-evaluating-in-the-wild-jailbreak-prompts-on-large-language-models-2023"><a class="header" href="#do-anything-now-characterizing-and-evaluating-in-the-wild-jailbreak-prompts-on-large-language-models-2023"><a href="#do-anything-now-characterizing-and-evaluating-in-the-wild-jailbreak-prompts-on-large-language-models-2023-1">“Do Anything Now”: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models (2023)</a></a></h4>
+<p><strong>JailbreakHub</strong> a tool to gather, analyze and evaluate jailbreak prompts in the wild (on the internet)</p>
+<h4 id="jailbreakradar-comprehensive-assessment-of-jailbreak-attacks-against-llms-2024"><a class="header" href="#jailbreakradar-comprehensive-assessment-of-jailbreak-attacks-against-llms-2024"><a href="#jailbreakradar-comprehensive-assessment-of-jailbreak-attacks-against-llms-2024-1">JailbreakRadar: Comprehensive Assessment of Jailbreak Attacks Against LLMs (2024)</a></a></h4>
+<p><strong>JailbreakRadar</strong>, a taxonomy of jailbreak attacks, unified safety policies of known llms and a dataset of 160 forbidden questions for this unified policy</p>
+<h4 id="scalable-watermarking-for-identifying-large-language-model-outputs-2024"><a class="header" href="#scalable-watermarking-for-identifying-large-language-model-outputs-2024"><a href="#scalable-watermarking-for-identifying-large-language-model-outputs-2024-1">Scalable watermarking for identifying large language model outputs (2024)</a></a></h4>
+<p>Embedded watermarking AI content during text generation.
+Uses watermarking specific distribution to influence sampling of tokens.
+Text can be checked against a watermarking validator to verify its presence</p>
+<h4 id="deliberative-alignment-reasoning-enables-safer-language-models-2025"><a class="header" href="#deliberative-alignment-reasoning-enables-safer-language-models-2025"><a href="#deliberative-alignment-reasoning-enables-safer-language-models">Deliberative Alignment: Reasoning Enables Safer Language Models (2025)</a></a></h4>
+<p>Work done by OpenAI to align their model.
+The idea is to integrate a safety policy deeper into the model.</p>
+<ol>
+<li>
+<p>Supervised Fine-Tuning
+by first asking a model to generate a chain-of thought and an answer to safety testcases with related safety policy.
+Then train another model with safety testcase, the corresponding answer and the chain-of-thought without the safety policy.
+Like teaching a child how to reason about why some things are good or bad without specific examples of good and bad stuff.</p>
+</li>
+<li>
+<p>Reinforcement learning
+The model is trained to provide compliant outputs without chain-of-thoughts to avoid deceptive reasoning.
+Like teaching a child to solely provide expected answers.</p>
+</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="prompt-packer-deceiving-llms-through-compositional-instruction-with-hidden-attacks-2023"><a class="header" href="#prompt-packer-deceiving-llms-through-compositional-instruction-with-hidden-attacks-2023">Prompt Packer: Deceiving LLMs through Compositional Instruction with Hidden Attacks (2023)</a></h1>
 <p><a href="https://arxiv.org/abs/2310.10077">https://arxiv.org/abs/2310.10077</a></p>
@@ -753,7 +772,7 @@ on technical implementation rather than the story.
 <li>list of 8 safety scenarios</li>
 <li>list of 6 different instruction-attacks</li>
 <li>create a set of safety prompts by combining these 2 lists called <em>SafetyPrompts</em> (~ 100k prompts)</li>
-<li>use another llm to evaluate whether the generated responsed are safe</li>
+<li>use another llm to evaluate whether the generated responses are safe</li>
 <li>rank the 15 tested models</li>
 </ul>
 <h2 id="safety-scenarios"><a class="header" href="#safety-scenarios">Safety scenarios</a></h2>
@@ -791,10 +810,10 @@ on technical implementation rather than the story.
 </table>
 </div>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="do-anything-now-characterizing-and-evaluating-in-the-wild-jailbreak-prompts-on-large-language-models-2023"><a class="header" href="#do-anything-now-characterizing-and-evaluating-in-the-wild-jailbreak-prompts-on-large-language-models-2023">“Do Anything Now”: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models (2023)</a></h1>
+<h1 id="do-anything-now-characterizing-and-evaluating-in-the-wild-jailbreak-prompts-on-large-language-models-2023-1"><a class="header" href="#do-anything-now-characterizing-and-evaluating-in-the-wild-jailbreak-prompts-on-large-language-models-2023-1">“Do Anything Now”: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models (2023)</a></h1>
 <p><a href="https://arxiv.org/abs/2308.03825">https://arxiv.org/abs/2308.03825</a></p>
 <h2 id="contributions-1"><a class="header" href="#contributions-1">Contributions</a></h2>
-<p>Built <strong>JailbreakHub</strong> a tool to gather, analyse and evaluate jailbreak prompts in the wild (on the internet)</p>
+<p>Built <strong>JailbreakHub</strong> a tool to gather, analyze and evaluate jailbreak prompts in the wild (on the internet)</p>
 <ul>
 <li>collected 6400 prompts from public forums (Reddit), private communities (Discord), dedicated websites and open-source datasets
 <ul>
@@ -827,7 +846,7 @@ variations to the jailbreaks are enough to make them work</li>
 <li>external safeguards impact is limited, only bring minor reduction in most cases</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="jailbreakradar-comprehensive-assessment-of-jailbreak-attacks-against-llms-2024"><a class="header" href="#jailbreakradar-comprehensive-assessment-of-jailbreak-attacks-against-llms-2024">JailbreakRadar: Comprehensive Assessment of Jailbreak Attacks Against LLMs (2024)</a></h1>
+<h1 id="jailbreakradar-comprehensive-assessment-of-jailbreak-attacks-against-llms-2024-1"><a class="header" href="#jailbreakradar-comprehensive-assessment-of-jailbreak-attacks-against-llms-2024-1">JailbreakRadar: Comprehensive Assessment of Jailbreak Attacks Against LLMs (2024)</a></h1>
 <ul>
 <li>paper: <a href="https://arxiv.org/pdf/2402.05668">https://arxiv.org/pdf/2402.05668</a></li>
 <li>repo: <a href="https://github.com/TrustAIRLab/JailbreakRadar">https://github.com/TrustAIRLab/JailbreakRadar</a></li>
@@ -928,7 +947,7 @@ A-tier: PAIR, TAP, MasterKey, AdvPrompter</p>
 <li>defense mechanisms may evolve in the future</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="scalable-watermarking-for-identifying-large-language-model-outputs-2024"><a class="header" href="#scalable-watermarking-for-identifying-large-language-model-outputs-2024">Scalable watermarking for identifying large language model outputs (2024)</a></h1>
+<h1 id="scalable-watermarking-for-identifying-large-language-model-outputs-2024-1"><a class="header" href="#scalable-watermarking-for-identifying-large-language-model-outputs-2024-1">Scalable watermarking for identifying large language model outputs (2024)</a></h1>
 <ul>
 <li>paper: <a href="https://www.nature.com/articles/s41586-024-08025-4.pdf">https://www.nature.com/articles/s41586-024-08025-4.pdf</a></li>
 </ul>
@@ -981,7 +1000,207 @@ degrades quality or watermarking</li>
 <li>watermakring can be removed by rewriting the watermark</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="papers-to-read"><a href="#papers-to-read" class="header">Papers to Read</a></h1>
+<h1 id="deliberative-alignment-reasoning-enables-safer-language-models"><a class="header" href="#deliberative-alignment-reasoning-enables-safer-language-models">Deliberative Alignment: Reasoning Enables Safer Language Models</a></h1>
+<ul>
+<li>research by OpenAI</li>
+<li>paper: <a href="https://arxiv.org/pdf/2412.16339">https://arxiv.org/pdf/2412.16339</a></li>
+<li>blogpos: <a href="https://openai.com/index/deliberative-alignment/">https://openai.com/index/deliberative-alignment/</a></li>
+</ul>
+<h2 id="motivations-and-challenges"><a class="header" href="#motivations-and-challenges">Motivations and challenges</a></h2>
+<p>Existing alignment methods are still not good enough</p>
+<ul>
+<li>supervised-fine tuning (SFT)</li>
+<li>Reinforcement Learning from Human Feedback (RLHF)</li>
+</ul>
+<p>Current flaws: jailbroken, over-refusal on out-of-distribution or
+adversarial prompts</p>
+<p>Two main limitations of current approaches :</p>
+<ul>
+<li>at inference time, models must respond immediately even for complex safety scenarios</li>
+<li>safety specs are learned implicitly through labeled data rather than explicitly by teaching the policies themselves. This leads to
+poor generalization when encoutering novel or adversarial situations</li>
+</ul>
+<h2 id="other-alignment-approaches"><a class="header" href="#other-alignment-approaches">Other alignment approaches</a></h2>
+<ul>
+<li>Reinforcement Learning from Human Feedback (RLHF)</li>
+<li>Reinforce Learning through AI Feedback (such as Constitutional AI)</li>
+</ul>
+<p>These methods use safety specifications to generate training labels.
+Specifications themselves are not provided to the models themselves.</p>
+<p>Self-REFINE: restrict the model to specific reasoning paths and does not involve direct reasoning about safety</p>
+<h2 id="deliberative-alignment"><a class="header" href="#deliberative-alignment">Deliberative Alignment</a></h2>
+<h3 id="definition"><a class="header" href="#definition">Definition</a></h3>
+<p>Deliberative Alignment is a paradigm is not only trained to recognized patterns of safe responses but to explicitly reason over safety specifications before producing an answer</p>
+<p>Concretely the model is not taught to only output safe answers but to recall relevant sections of the safety specification and apply logical reasoning over them (via Chain of Thought (COT)) and decide whether to comply, refuse or safe-complete</p>
+<h3 id="openai-o-serie"><a class="header" href="#openai-o-serie">OpenAI o serie</a></h3>
+<p>OpenAI’s o’s series uses deliberative alignment and chain-of-thought (COT) reasoning to draft safer responses based on OpenAI’s internal policies.</p>
+<p>This has been proven to outperform state of the art LLMs both on safety benchmarks and performance.</p>
+<h3 id="training-methods"><a class="header" href="#training-methods">Training methods</a></h3>
+<p>Two main stages:</p>
+<ul>
+<li>Suvervised Fine-Tuning (SFT) on “reasoned” data</li>
+<li>Reinforcement Learning (RL) refinement</li>
+</ul>
+<h4 id="sft"><a class="header" href="#sft">SFT</a></h4>
+<ol>
+<li>Starting from a base model, data is generated by prompting the model with a user prompt + the relevant portion of the safety spec for that prompt category. The model is tasked with producing a chain-of-thought (COT) that cites and reasons over the spec then output a safe answer.</li>
+</ol>
+<pre><code>(prompt, spec(category)) -&gt; (CoT, output)
+</code></pre>
+<pre><code>Prompt Template for Completion Generation
+----
+
+The following is a conversation between a user and an assistant: &lt;prompt&gt;
+Please figure out the best possible answer to the last user query from the conversation above. As a reminder, this
+answer should follow all OpenAI policies below:
+&lt;spec(category)&gt;
+
+FINAL INSTRUCTIONS:
+You should do a full analysis of the proposed answer for compliance, correctness and helpfulness before producing
+it. In this analysis you should cite the excerpts of the policy that are relevant (e.g., ”OpenAI policy section X says
+that ...”). However, do not mention irrelevant sections of the policy. Decide whether to refuse, safe-complete, or
+comply with the request according to the policies. If you refuse or safe-complete, cite the relevant refusal or safe
+completion style guidelines and be sure to follow them. The final answer should just be the answer to the user,
+and not the analysis
+</code></pre>
+<ol start="2">
+<li>After generation of data they score produced <code>(prompt, CoT, output)</code> with a separate judge llm (which also sees <code>spec(category)</code>) $k$ times. Final scores of these $k$ tests is the minimum because
+some of the runs may overlook issues about the completion</li>
+</ol>
+<pre><code>(prompt, spec(category), CoT, output) -&gt; Filtered(prompt, specs, CoT, output)
+</code></pre>
+<pre><code>Prompt Template for Reward Model to Judge Completions
+----
+
+The following is a conversation between a user and an assistant, and the chain of thought that the assistant
+followed to reach its final response:
+&lt;prompt, CoT, extracted answer&gt;
+
+Your goal is to rate the assistant's final response to the user, for correctness, helpfulness, and compliance, as well as
+the quality of the chain of thought. Your rating should be based on the response's compliance with all OpenAI
+policies below:
+&lt;spec(category)&gt;
+# [Optional] In your answer, consider that another AI determined ...
+----
+FINAL INSTRUCTIONS:
+Judge the assistant response according to the policy.
+# [Optional] Additionally, after your answer, on a new line, write 'Agree' or 'Disagree' followed by a colon and a brief
+analysis explaining your stance on the other AI's analysis
+</code></pre>
+<ol start="3">
+<li>The base model is fine tuned on the generated and filtered data
+tuples but without including the safety specs in the prompt. This encourages the model to internalize the policy
+and force it to recall and reason about safety on its own</li>
+</ol>
+<pre><code>Filtered(prompt, specs, CoT, output) -&gt; (prompt, CoT, output) used to train base model
+</code></pre>
+<h4 id="reinforcement-learning-rl-refinement"><a class="header" href="#reinforcement-learning-rl-refinement">Reinforcement Learning (RL) refinement</a></h4>
+<p>After SFT a second of stage of RL is done</p>
+<ol>
+<li>For safety-relevant prompts they use the judge LLM with safety specs to provide reward signals towards compliant outputs</li>
+<li>During RL, CoT is not exposed to the judge LLM and  only
+incentivizes safe outputs to avoid encouraging superficial/deceptive reasoning</li>
+<li>the trained model is trained to act safely via internalized reasoning without needing to provide it a spec</li>
+</ol>
+<h3 id="comparisons-with-other-alignment-methods"><a class="header" href="#comparisons-with-other-alignment-methods">Comparisons with other alignment methods</a></h3>
+<p><img src="https://images.ctfassets.net/kftzwdyauwt9/4RhWQZNZEjSlfiBGktzqgo/0d52931621797aba33f251d4ad9502d4/Diagram_2_D_L.svg?w=3840&amp;q=80" alt="Deliberative Alignment Comparison"></p>
+<h3 id="results-1"><a class="header" href="#results-1">Results</a></h3>
+<ul>
+<li>Better safety</li>
+<li>Better refusal-style and safe-completion quality</li>
+<li>Reduce over-refusal</li>
+<li>More robust to diverse prompts</li>
+<li>Claims better safety without compromising helpfulness</li>
+</ul>
+<h4 id="implications"><a class="header" href="#implications">Implications</a></h4>
+<ul>
+<li>By teaching the policy itself, models become more transparent
+and interpretable. CoT can be inspected to understand results</li>
+<li>Data generation is automatic this approch is scalable</li>
+<li>Better generaliation, it’s more robust to new adversarial prompts</li>
+<li>Does not require a new model architecture</li>
+</ul>
+<h4 id="limitations-2"><a class="header" href="#limitations-2">LImitations</a></h4>
+<ul>
+<li>Dependence on chain-of-thought reasoning capability, the base model needs to have reliable CoT reasoning</li>
+<li>Specs modifications require retraining</li>
+<li>Risk of superficial compliance, during RL the CoT is hidden so there are risks of “surface compliance” where the model does not
+have a deep understanding of the specs</li>
+<li>More computations and cost for training compared to other alignment methods</li>
+</ul>
+<h2 id="impact-of-inference-time-compute"><a class="header" href="#impact-of-inference-time-compute">Impact of inference-time compute</a></h2>
+<p>Bigger inference-time compute usually comes with better safety results. Giving more time to model to reason about complex prompts or about complex safety specs improce models safety.</p>
+<h2 id="science-of-deliberate-alignment"><a class="header" href="#science-of-deliberate-alignment">Science of Deliberate Alignment</a></h2>
+<h3 id="ablations-of-different-stages-of-aeliberative-alignment"><a class="header" href="#ablations-of-different-stages-of-aeliberative-alignment">Ablations of different stages of aeliberative alignment</a></h3>
+<p>How do the different stages of deliberate alignment impact the final model?
+4 different situations are tested:</p>
+<ul>
+<li>no safety data in both SFT and RL</li>
+<li>safety in SFT only</li>
+<li>safety in RL only</li>
+<li>safety in both SFT and RL</li>
+</ul>
+<h4 id="results-1-1"><a class="header" href="#results-1-1">Results</a></h4>
+<ul>
+<li>“Safety in both SFT and RL” scores best in safety benchs but worse on overrefusal.</li>
+<li>“No safety” scores worse as expected</li>
+<li>“Mid safety” attains intermediate results showing that both steps are necessary.</li>
+<li>Hypothsesis: <em>the model learns a strong prior for safe reasoning during SFT, and then
+learns to use its CoT more effectively during RL</em></li>
+<li>Compared against a base model which receives a summary of the policies in the prompt. In general this model struggles a lot showing
+the importance of embedding these policies during training is more reliable that at deployment</li>
+</ul>
+<h3 id="policy-retrieval-accuracy"><a class="header" href="#policy-retrieval-accuracy">Policy Retrieval Accuracy</a></h3>
+<p>How reliably do models trained with deliberative alignment actually refer to the correct policy?
+2 settings are compared:</p>
+<ul>
+<li>no safety baseline: the model does not undergo any deliberate alignment training</li>
+<li>full : the model is trained on the full dataset including safety</li>
+</ul>
+<p>Check on evaluation prompts if the trained model is able to refer to the right section of the safety specs during CoT.
+Trained models is better</p>
+<h3 id="robustness-to-out-of-distribution-settings-ood"><a class="header" href="#robustness-to-out-of-distribution-settings-ood">Robustness to Out-Of-Distribution settings (OOD)</a></h3>
+<p>Out of Distribution means that the model is evaluated with data which is not part of the training data.</p>
+<p>3 models:</p>
+<ul>
+<li>no safety training</li>
+<li>eng-only, no-encoded data: all non-english and encoded data is removed from the english dataset and deliberate alignment training is used</li>
+<li>full deliberate alignment training</li>
+</ul>
+<p>2 benchs:</p>
+<ul>
+<li>encoded prompts: illegal prompts with encoding jailbreak techniques</li>
+<li>multilingual: illegal prompts with different languages</li>
+</ul>
+<p><strong>Results</strong>
+The semi-trained model scores similarly to the fully-trained one showing robustness of deliberative alignment in OOD settings</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="papers-to-read"><a class="header" href="#papers-to-read">Papers to read</a></h1>
+<h2 id="formal-model-of-ai-safety"><a class="header" href="#formal-model-of-ai-safety">Formal model of AI safety</a></h2>
+<h3 id="towards-guaranteed-safe-ai-a-framework-for-ensuring-robust-and-reliable-ai-systems-2024"><a class="header" href="#towards-guaranteed-safe-ai-a-framework-for-ensuring-robust-and-reliable-ai-systems-2024">Towards Guaranteed Safe AI: A Framework for Ensuring Robust and Reliable AI Systems (2024)</a></h3>
+<p><a href="https://arxiv.org/abs/2405.06624">https://arxiv.org/abs/2405.06624</a>
+formal framework for building AI systems that are provably safe and reliable</p>
+<h2 id="guardrails-for-ai-alignment"><a class="header" href="#guardrails-for-ai-alignment">Guardrails for AI alignment</a></h2>
+<h3 id="from-refusal-to-recovery-a-controltheoretic-approach-to-generative-ai-guardrails-2025"><a class="header" href="#from-refusal-to-recovery-a-controltheoretic-approach-to-generative-ai-guardrails-2025">From Refusal to Recovery: A Control‑Theoretic Approach to Generative AI Guardrails (2025)</a></h3>
+<p><a href="https://arxiv.org/abs/2510.13727">https://arxiv.org/abs/2510.13727</a>
+This work reframes guardrail enforcement as a sequential decision problem (not just classification). It leverages safety‑critical control theory to build predictive guardrails that monitor an agent’s outputs in real time and proactively correct risky actions instead of merely refusing them. By treating AI safety as a control problem, it enforces guardrails dynamically, integrating monitoring, prediction, and recovery policies to steer behavior away from hazards.
+arXiv</p>
+<h3 id="customizable-runtime-enforcement-dsl-for-safe-llm-agents-2025"><a class="header" href="#customizable-runtime-enforcement-dsl-for-safe-llm-agents-2025">Customizable Runtime Enforcement DSL for Safe LLM Agents (2025)</a></h3>
+<p><a href="https://arxiv.org/html/2503.18666v1">https://arxiv.org/html/2503.18666v1</a>
+Introduces a lightweight domain‑specific language (DSL) designed for specifying and enforcing runtime constraints on LLM agents. Users can define structured safety rules (triggers + predicates + enforcement actions) that are checked during execution. The system embeds constraint enforcement directly into the LLM agent pipeline, preventing unsafe behaviors across multiple domains (code, embodied agents, autonomous driving scenarios). Demonstrates strong safety compliance with minimal runtime overhead.</p>
+<h3 id="evaluating-robustness-of-safety-guardrails-against-adversarial-attacks-2025"><a class="header" href="#evaluating-robustness-of-safety-guardrails-against-adversarial-attacks-2025">Evaluating Robustness of Safety Guardrails Against Adversarial Attacks (2025)</a></h3>
+<p><a href="https://arxiv.org/abs/2511.22047">https://arxiv.org/abs/2511.22047</a>
+Evaluates real guardrail models and finds that many degrade heavily on novel attacks. Highlights a pressing enforcement robustness gap even in deployed systems.</p>
+<h2 id="agentic-ai-sandboxing"><a class="header" href="#agentic-ai-sandboxing">Agentic AI Sandboxing</a></h2>
+<h3 id="haicosystem-an-ecosystem-for-sandboxing-safety-risks-in-humanai-interactions-2024"><a class="header" href="#haicosystem-an-ecosystem-for-sandboxing-safety-risks-in-humanai-interactions-2024">HAICOSYSTEM: An Ecosystem for Sandboxing Safety Risks in Human‑AI Interactions (2024)</a></h3>
+<p><a href="https://arxiv.org/abs/2409.16427">https://arxiv.org/abs/2409.16427</a>
+HAICOSYSTEM, a sandbox‑like evaluation framework to test safety risks of AI agents in interactive environments</p>
+<h3 id="swiss-cheese-model-for-ai-safety-a-taxonomy-and-reference-architecture-for-multilayered-guardrails-of-foundation-modelbased-agents-2025"><a class="header" href="#swiss-cheese-model-for-ai-safety-a-taxonomy-and-reference-architecture-for-multilayered-guardrails-of-foundation-modelbased-agents-2025">Swiss Cheese Model for AI Safety: A Taxonomy and Reference Architecture for Multi‑Layered Guardrails of Foundation Model‑Based Agents (2025)</a></h3>
+<p><a href="https://arxiv.org/abs/2408.02205">https://arxiv.org/abs/2408.02205</a>
+Taxonomy  and multi‑layer architecture of runtime guardrails for foundation‑model‑based agents, inspired by the Swiss Cheese Model</p>
+<h3 id="a-safety--security-framework-for-realworld-agentic-systems-2025"><a class="header" href="#a-safety--security-framework-for-realworld-agentic-systems-2025">A Safety &amp; Security Framework for Real‑World Agentic Systems (2025)</a></h3>
+<p><a href="https://arxiv.org/abs/2511.21990">https://arxiv.org/abs/2511.21990</a>
+Focuses on safety and security in agentic AI systems deployed in real workflows (enterprise context). Proposes a dynamic safety‑security framework that identifies risks through sandboxed, AI‑driven red teaming, and uses auxiliary models + human oversight for contextual risk discovery and mitigation. Demonstrates effectiveness via a case study with NVIDIA’s research assistant and releases a dataset of thousands of safety/attack traces.</p>
 
                     </main>
 
@@ -1006,6 +1225,22 @@ degrades quality or watermarking</li>
         <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
         <script>

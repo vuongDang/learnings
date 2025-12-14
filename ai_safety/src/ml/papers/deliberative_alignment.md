@@ -114,8 +114,8 @@ Filtered(prompt, specs, CoT, output) -> (prompt, CoT, output) used to train base
 After SFT a second of stage of RL is done
 
 1. For safety-relevant prompts they use the judge LLM with safety specs to provide reward signals towards compliant outputs
-2. During RL, CoT is not exposed to the judge and judge LLM only
-incentizes safe outputs to avoid encouraging superficial/deceptive reasoning
+2. During RL, CoT is not exposed to the judge LLM and  only
+incentivizes safe outputs to avoid encouraging superficial/deceptive reasoning
 3. the trained model is trained to act safely via internalized reasoning without needing to provide it a spec
 
 ### Comparisons with other alignment methods

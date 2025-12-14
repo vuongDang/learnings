@@ -4,7 +4,7 @@
 
 ## Contributions 
 
-Built __JailbreakHub__ a tool to gather, analyse and evaluate jailbreak prompts in the wild (on the internet)
+Built __JailbreakHub__ a tool to gather, analyze and evaluate jailbreak prompts in the wild (on the internet)
 
 - collected 6400 prompts from public forums (Reddit), private communities (Discord), dedicated websites and open-source datasets
   - among these prompts 666 were jailbreak prompts
