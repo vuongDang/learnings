@@ -37,20 +37,8 @@
 - block modes usually requires a 128-bit IV/nonce (initialization vector or nonce)
 - very efficient with dedicated hardware
   - without dedicated hardware it can be slow and vulnerable to side-channel attacks
-
-### Salsa20/ChaCha20
-
-- Stream ciphers
-- Salsa20 is the original (2005) while ChaCha20 is an improved version published later (2008)
-- Chacha20 and Poly1305 (message authentication code) are combined to form _ChaCha20-Poly1305_
-  - an authenticated encryption scheme
-  - used in HTTP3, OpenSSH, WireGuard
-- ChaCha20 usually performs better than AES where the CPU does not have AES-acceleration features
-  - mobile devices or IoT
-  - very fast in software
-  - resistant to timing attacks
-
-### AES modes
+  
+#### AES modes
 
 Confidentiality only modes
 
@@ -108,6 +96,19 @@ Authenticated Encryption (AE) modes
     4. XOR the keystream with the plaintext to produce the ciphertext
     5. Compute CBC-MAC of the ciphertext and associated data (tag)
     6. Append the CBC-MAC to the ciphertext
+
+### Salsa20/ChaCha20
+
+- Stream ciphers
+- Salsa20 is the original (2005) while ChaCha20 is an improved version published later (2008)
+- Chacha20 and Poly1305 (message authentication code) are combined to form _ChaCha20-Poly1305_
+  - an authenticated encryption scheme
+  - used in HTTP3, OpenSSH, WireGuard
+- ChaCha20 usually performs better than AES where the CPU does not have AES-acceleration features
+  - mobile devices or IoT
+  - very fast in software
+  - resistant to timing attacks
+
 
 ## Asymmetric Encryption
 
