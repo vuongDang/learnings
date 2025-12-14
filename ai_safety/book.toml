@@ -2,7 +2,7 @@
 authors = ["vuongDang"]
 language = "en"
 src = "src"
-title = "book"
+title = "My learnings on AI Safety"
 
 [preprocessor]
 
