@@ -41,14 +41,23 @@ jobs:
         uses: peaceiris/actions-mdbook@v2
         with:
           mdbook-version: "0.4.36"
-      - name: Build ${{ matrix.name }}
+      - name: Build AI Safety book
         run: mdbook build
-        working-directory: ${{ matrix.path }}
-      - name: Upload artifact ${{ matrix.name }}
+        working-directory: ai_safety
+      - name: Build cryptography book
+        run: mdbook build
+        working-directory: crypto
+      - name: Upload artifact ai book
         uses: actions/upload-artifact@v4
         with:
-          name: book-${{ matrix.name }}
-          path: ./${{ matrix.path }}/book
+          name: book-ai-safety
+          path: ./ai_safety/book
+          overwrite: true
+      - name: Upload cryptography book
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-cryptography
+          path: ./crypto/book
           overwrite: true
 
   # Deployment job
