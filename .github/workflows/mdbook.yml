@@ -34,7 +34,7 @@ jobs:
           - name: AI Safety
             path: ai_safety
           - name: Cryptography
-            path: cryptography
+            path: crypto
     steps:
       - uses: actions/checkout@v4
       - name: Install mdBook
