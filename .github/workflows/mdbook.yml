@@ -50,9 +50,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: book-{{ matrix.name }}
+          name: book-${{ matrix.name }}
           path: ./${{ matrix.path }}/book
-          overwrite: true
 
   # Deployment job
   deploy:
