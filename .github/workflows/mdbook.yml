@@ -52,6 +52,7 @@ jobs:
         with:
           name: book-{{ matrix.name }}
           path: ./${{ matrix.path }}/book
+          overwrite: true
 
   # Deployment job
   deploy:
