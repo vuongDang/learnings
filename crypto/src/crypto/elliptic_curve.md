@@ -180,3 +180,44 @@ This is to remove trivial pairing
 
 This is for practicality, to be usable for proofs.
 **for any P, S, e has to be fast to compute**
+
+#### Remark
+
+An elliptic pairing does not exist for any elliptic group _G0, G1 and Gt_. They are usually used on carefully chosen elliptic groups.
+
+### Zero-Knowledge with Elliptic Pairings
+
+As mentioned previously elliptic curves are homormophic under addition but not multiplication.
+Hence we cannot calculate _D = A * B = aG * bG_ if we are only
+given _A_ and _B_
+
+However what elliptic pairing allows us to do is to solve the dilemma:
+**Verify that _D = A \* B_ given _A, B_ and _D_**
+
+#### How?
+
+Given a symmetric pairing _e_.
+Show that: _e(A, B) = e(G, D)_
+
+#### Proof
+
+_e(A, B) = e(aG, bG)
+= e(G, abG)
+= e(G, D)_
+
+We have proven that
+_e(A, B) = e(G, D)_ only hold iff _D = A \* B_
+
+#### Conclusion
+
+Bilinear pairings being only homormophic under addition and not multiplication are perfect for ZK-proofs.
+
+- We can solve **Verify that _D = A \* B_ given _A, B_ and _D_**
+- We can't solve **Compute _D = A \* B_ given _A_ and _B_**
+
+Only the user knowing the secret values _a_ and _b_ can compute _D_
+but anyone can check that _D_ was computed correctly.
+
+#### Note
+
+In practice _e_ is an asymetric pairing
