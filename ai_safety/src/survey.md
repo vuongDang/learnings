@@ -35,3 +35,7 @@ Like teaching a child how to reason about why some things are good or bad withou
 2. Reinforcement learning 
 The model is trained to provide compliant outputs without chain-of-thoughts to avoid deceptive reasoning.
 Like teaching a child to solely provide expected answers.
+
+####  [Multi-Agent Penetration Testing AI for the Web: MAPTA (2025)](multi-agent/mapta.md)
+
+MAPTA (Multi-Agent Penetration Testing AI),  open-source multi-agent system for web security that enforces mandatory end-to-end exploit validation (Proof-of-Concept) to eliminate false positives.

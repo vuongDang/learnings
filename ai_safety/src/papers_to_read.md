@@ -41,3 +41,5 @@ Taxonomy  and multi‑layer architecture of runtime guardrails for foundation‑
 
 [https://arxiv.org/abs/2511.21990](https://arxiv.org/abs/2511.21990)
 Focuses on safety and security in agentic AI systems deployed in real workflows (enterprise context). Proposes a dynamic safety‑security framework that identifies risks through sandboxed, AI‑driven red teaming, and uses auxiliary models + human oversight for contextual risk discovery and mitigation. Demonstrates effectiveness via a case study with NVIDIA’s research assistant and releases a dataset of thousands of safety/attack traces.
+
+## Adversarial review
