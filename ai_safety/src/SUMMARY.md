@@ -6,6 +6,8 @@
   - [How to train an LLM](how_to_train_an_llm.md)
   - [Jailbreak Prompts](jailbreak_prompts.md)
   - [Safety Benchmarks](safety_benchmarks.md)
+  - [Projects](projects.md)
+  - [White-box Attacks](white_box_attacks.md)
   - [Plan](plan.md)
   - [Papers to Read](papers_to_read.md)
   - [Survey](survey.md)
