@@ -1,23 +1,50 @@
-# Quadradic Arithmetic Programs
+# SNARKs
 
-## ZK overview
+## SNARKs overview
 
-From a program to zkSNARKs:
-- computation
-- algebraic circuit
-- R1CS
-- Quadradic Arithmetic Programs
-- Linear PCP
-- Linear Interactive Proofs
-- zkSNARK
+SNARKs like Groth16.
 
-3 processes:
-- Transform the program into QAP the "right form"
-- Transform an input to the program into a "witness to the QAP", a solution to the QAP
-- Create the actual zero knowledge proof for this witness
-- Additionally: verify a proof that you receive
+1. Design 
+- Code to algebraic circuit 
+  - turn a program into a list of circuits 
+  - a circuit being of the form "x = y * z" or "x = y + z"
+  - it's like deconstructing a program into a list of simple statements 
+  - tricks are involved to turn condition and loop into list of circuits
+- circuit to R1CS (Rank 1 Constraint System)
+  - turn each circuit into a R1CS
+  - so from a list of circuit you get a list of R1CS
+  - this list of R1Cs can be gathered into 3 matrices A, B and C such that _A.s * B.s = C.s_
+  - A, B, C are of size (nb_of_circuits, nb_of_variables_in_all_circuits)
+  - vector _s_ is a solution to equation above (the witness)
+    - to verify that _s_ verifies _A.s * B.s = C.s_ you have to compute _nb_of_variables_in_all_circuits_ of equations
+- R1CS to QAP (Quadratic Arithmetic Programs)
+  - compress your constraint vectors into 3 polynomials _A(x), B(x), C(x)_
+  - use your witness to compute _A(x), B(x), C(x)_ separately
+  - you can build the polynomial _P(x) = A(x) * B(x) - C(x)_
+  - Uses Lagrange interpolation to produce the polynomial
 
-## Computation to algebraic circuit, flattening to gates
+3. Create a proof
+- the prover wants to prove that the private polynomial _P(x)_ is perfectly divisible by the public polynomial _Z(x)_
+- _Z(x)_ was derived from the circuits such that it divides _P(x)_
+- if this is true you have _P(x) = H(x) * Z(x)_ with _H(x)_ the leftover quotient (private)
+- Prover calculates 
+  - Proof_a = P(tau)
+  - Proof_b = H(tau)
+  - Proof_c = Z(tau)
+  - tau comes from the trusted setup, no one knows it
+
+4. Verify the proof
+- Uses bilinear pairing _e_ to check:
+  - _e(Proof_a) = e(Proof_b, Proof_c)_
+  - if this is true it means that _P(tau) = H(tau) * Z(tau)_
+- Hence the verifier knows that the prover know the _P(x)_ hence a witness to the program
+
+
+## Setup phase: code to QAP
+
+### Code to algebraic circuit, flattening to gates
+
+This is now usually done using a compiler.
 
 Transform the initial program into a sequence of statements
 that are two forms:
@@ -25,7 +52,7 @@ that are two forms:
 - assignment with binary op `x = y (op) z`
   with op can be (+,-,*,/)
 
-### Example
+#### Example
 _Initial program_
 ```
 def toto(x):
@@ -42,7 +69,7 @@ out = temp2 + 5
 
 Each statement of our circuit can be considered a logic gate.
 
-## Circuit to R1CS
+### Circuit to R1CS
 
 Rank-1 Constraint System (R1CS) is a sequence of groups of three
 vectors `(a, b, c)`.
@@ -64,7 +91,7 @@ relates to the following vector of variables:
 ```
 
 
-### Transforming logic gate into R1CS
+#### Transforming logic gate into R1CS
 
 Standard algorigthm depending on operators and if operands
 are variables or constants.
@@ -122,7 +149,7 @@ c = [ 0  ,0, 1  , 0    , 0, 0    ]
 s = [ 1  ,3, 35  , 9    ,27, 30   ]
 ```
 
-### Complete R1CS with a solution
+#### Complete R1CS with a solution
 
 ```
 A:
@@ -146,14 +173,14 @@ C:
 s = [ 1  ,3, 35  , 9    ,27, 30   ]
 ```
 
-## R1CS to QAP
+### R1CS to QAP
 
 The idea is to apply the same logic as previous step but with
 polynomials instead of dot products.
 We go from (A, B, C) 3 groups of 4 vectors to six groups of three
 degree-3 polynomials using Lagrange Interpolation
 
-### Lagrange interpolation
+#### Lagrange interpolation
 
 Allow us to find a polynomial that passes through a set of points (x,y).
 
@@ -189,12 +216,12 @@ It works since for each point of set _M_
 only one of _P1, P2 and P3_ are different from
 0 and its value matches the corresponding point
 
-### Lagrange complexity
+#### Lagrange complexity
 
 Algorithm showed previously is _O(n^3)_ but can be reduced
 to _O(n^2)_ or further using fast Fourier transform algorithms.
 
-### Using Lagrange on our R1CS
+#### Using Lagrange on our R1CS
 
 Take the first value out of every vector _a_ and make a
 polynomial out of it. Repeat this for every index of _a_, _b_ and _c_ vectors.

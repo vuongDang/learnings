@@ -43,7 +43,7 @@ If the group modulo is prime:
 
 - it's called a prime curve
 - the group is cyclic, meaning it has generator _g_ that can generate
-  all elements of the group by repeated _dot_ operations
+  all elements of the group by repeated _+_ operations
 - all elements have a unique inverse
 
 If the modulo is not prime:
@@ -132,13 +132,14 @@ We declare _a_, _b_ scalar and _A, B_ elliptic curves elements, and _G_ generato
 From what we've seen so far for elliptic curve:
 
 - it's easy to compute _A = aG_ and _B = bG_ but hard to retrieve _a_ and _b_ from _A, B_ and _G_
-- they are homormophic under addition
+- they are homomorphic under addition
   - aG + bG = A + B = (a + b) G
   - so you are able to do two tasks under addition without knowing secrets _a_ and _b_
     - task 1: given _A_ and _B_ you can compute _C = (a+b) G = A + B_
     - task 2: given _A, B, C_ you can verify that _C = (a+b) G_
-- they are **not** homormophic under multiplication
+- they are **not** homomorphic under multiplication
   - aG \* bG = (a \* b) G != A \* B
+  - multiplication is not defined in elliptic curves group
   - so you can't do task 1:
     - task 1: given _A_ and _B_ you can't compute _D = (a\*b)G_
     - task 2: given _A, B, D_ you can check that _D = (a\*b)G_ **ONLY** using elliptic curve pairings.
@@ -146,7 +147,7 @@ From what we've seen so far for elliptic curve:
       that we know _a_ and _b_ without revealing them.
 
 **Note:** being able to do task 1 and task 2 under both addition and multiplication means
-that the group is fully homormophic.
+that the group is fully homomorphic.
 
 ### Elliptic pairing definition
 

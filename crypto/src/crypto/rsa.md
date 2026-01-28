@@ -1,12 +1,12 @@
 # RSA
 
-##
+## Principles
 
-RSA and diffie-hellman provided a breakthrough in cryptography.
+RSA and Diffie-Hellman provided a breakthrough in cryptography.
 RSA relies on integer factorization and DH on discrete log problem (DLP).
 
-Crypto based on DLP includes
-- Diffie hellman
+Crypto based on DLP includes:
+- Diffie Hellman
 - El Gamal
 - DSA
 - ECC
