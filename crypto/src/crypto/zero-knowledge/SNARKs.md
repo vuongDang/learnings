@@ -4,7 +4,13 @@
 
 SNARKs like Groth16.
 
-1. Design 
+1. Trusted Setup
+- _tau_, the toxic waste, is created and part of a finite field _Fp_ with _p_ 
+- elliptic curve group _G_ is created from elements of _Fp_ and has generator _g_
+- Common Reference String: _CRS = (g^1, g^tau, g^(tau^2), ...)_ are elements of _G_
+- the _CRS_ are elements of _Fp_ 
+
+2. Design 
 - Code to algebraic circuit 
   - turn a program into a list of circuits 
   - a circuit being of the form "x = y * z" or "x = y + z"
@@ -17,27 +23,43 @@ SNARKs like Groth16.
   - A, B, C are of size (nb_of_circuits, nb_of_variables_in_all_circuits)
   - vector _s_ is a solution to equation above (the witness)
     - to verify that _s_ verifies _A.s * B.s = C.s_ you have to compute _nb_of_variables_in_all_circuits_ of equations
+  - R1CS is a list of constraint on how each variable of the circuit should behave at each step of the circuit
 - R1CS to QAP (Quadratic Arithmetic Programs)
-  - compress your constraint vectors into 3 polynomials _A(x), B(x), C(x)_
+  - compress your constraint vectors into a template to produce 3 polynomials _A(x), B(x), C(x)_
   - use your witness to compute _A(x), B(x), C(x)_ separately
   - you can build the polynomial _P(x) = A(x) * B(x) - C(x)_
   - Uses Lagrange interpolation to produce the polynomial
+  - this transform a list of vectors/constraints into a list of polynomials for every variable of the circuit 
+    - ex: for variable x in the circuit the constraint were [3, 0, 5] 
+    - [3, 0, 5] are the coefficients of x in gates 1, 2 and 3
+    - QAP is then the polynomial Px(x) that passes by the points (1,3), (2, 0), (3, 5)
+    - hence whole QAP are a map between variables/state of the circuit to a polynomial describing its behavior 
+    during a circuit execution
 
 3. Create a proof
-- the prover wants to prove that the private polynomial _P(x)_ is perfectly divisible by the public polynomial _Z(x)_
-- _Z(x)_ was derived from the circuits such that it divides _P(x)_
+- The prover uses the QAP template and the witness to produce 3 polynomials _A(x), B(x), C(x)_ separately
+- then it can build the polynomial _P(x) = A(x) * B(x) - C(x)_
+- if the witness is valid then the private polynomial _P(x)_ is perfectly divisible by the public polynomial _Z(x)_
+- _Z(x)_ was derived from the circuits such that it divides _P(x)_ for any valid witness
 - if this is true you have _P(x) = H(x) * Z(x)_ with _H(x)_ the leftover quotient (private)
-- Prover calculates 
-  - Proof_a = P(tau)
-  - Proof_b = H(tau)
-  - Proof_c = Z(tau)
-  - tau comes from the trusted setup, no one knows it
+- _P, H and Z_ are polynomials defined over the finite field _Fp_
+- Prover derives _(Proof_a, Proof_b, Proof_c)_ elements of the elliptic curve _G_
+  - _Proof_a = g^(P(tau))_
+            _= g^(c0 + c1 * tau + c2 * tau^2 + ...)_
+            _= g^c0 * (g^tau)^c1 * (g^(tau^2))^c2 * ..._
+  - with _(g, g^tau, g^(tau^2), ...)_ elements of the CRS
+  - _Proof_b = g^(H(tau))_ 
+  - _Proof_c = g^(Z(tau))_ was created during trusted setup
+  - tau comes from the trusted setup and is the toxic waste, no one knows its value
+  - (Proof_a, Proof_b, Proof_c) are derived from the CRS so they can't be faked
 
 4. Verify the proof
 - Uses bilinear pairing _e_ to check:
-  - _e(Proof_a) = e(Proof_b, Proof_c)_
+  - _e_ has this property _e(g^a, g^b) = e(g, g)^(ab)_
+  - hence, _e(Proof_a) = e(Proof_b, Proof_c)_
   - if this is true it means that _P(tau) = H(tau) * Z(tau)_
 - Hence the verifier knows that the prover know the _P(x)_ hence a witness to the program
+- the verifier did not learn about _P(x)_ nor _tau_
 
 
 ## Setup phase: code to QAP
