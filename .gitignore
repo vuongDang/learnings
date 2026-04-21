@@ -1,6 +1,7 @@
 /target
 # Compiled output
 *.pdf
+!ai_safety/src/spar/report/report.pdf
 *.dvi
 *.ps
 
