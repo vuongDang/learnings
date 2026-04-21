@@ -1,1 +1,43 @@
 /target
+# Compiled output
+*.pdf
+*.dvi
+*.ps
+
+# Auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.blg
+*.bbl
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+
+# Glossaries
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+
+# Index
+*.idx
+*.ilg
+*.ind
+
+# Misc
+*.DS_Store
+Thumbs.db

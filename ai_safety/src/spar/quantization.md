@@ -218,3 +218,58 @@ q_x[0] = round(1.5 / 0.00510) + 157 = 294 + 157 = 451 → clamp to 255
 $$
 
 We can see the issue here with 8-bit quantization where the input overflows from range $[0, 255]$
+
+## Quantization error 
+
+## Where approximation error comes from
+
+- __Parameter Quantization__
+  - What it is
+    - $Wi = round(W / S_W)$
+    - $W' = Wi * S_W$
+    - Where, $W$ is base parameter, $Wi$ the parameter in finite field, $W'$ the parameter back to float after having been quantized
+  - Error comes from rounding to the nearest integer
+  - it is bounded and fixed at quantization time 
+    - $|∆W| = |W - W'| <= S_W / 2$
+  - How does it affect linear layers? TODO
+- __Input / Activation Quantization__
+  - What it is
+    - $xi = round(x / S_x)$
+    - $x' = xi * S_w$
+    - where: $x$ is base input, $xi$ input on finite field, $x'$ input reversed to float after quantization
+  - Error comes from rounding to nearest integer
+  - it is bounded 
+    - $|∆xi| = |x - x'| <= S_x / 2$
+- __Rescaling after multiplication__
+  - After computing any multiplication the result is too big and need to be rescaled back
+  - for example this multiplication $zi = Wi · xi$ 
+    - $zi$ lives at scale $S_W * S_x$ and needs to be compressed back for next layer
+    - next $xi2 = round (zi * S_W * S_x / S_{xi2})$
+  - error comes from another rounding 
+    - $∆xi2 <= S_{xi2} / 2 $
+  - this occurs at every layer boundary
+  
+## Layers 
+
+### Linear layer
+
+- $W · x ≈ (Wi · xi) * S_W * S_w$
+-  if we want to compare o
+  - ∆z  = z - z' 
+        = W · x - W' · x'
+        = W · x - round(W / S_W) * S_W * round (x / S_x) * S_x
+  - or another vision 
+    - ∆z = input quant + weight quant + cross term
+         = W∆ x        + ∆W x         + ∆W ∆x
+    - at layer $k$
+      - ∆z = W_k · ∆x_{k-1}         + ∆W_k · x         + ∆W_k · ∆x_{k-1}
+      - ∆z_k = propagated input error + Weight quant     + cross term, second order
+      - $||∆z_k||_∞ <= ||W_k||_∞ · S_x / 2 + S_W /2 ||x_{k-1}||_1 + S_W * S_x / 4 · n_{k-1}$
+    - accumulated across $L$ layers
+      - at each layer we add parameter quantization error and rescaling error both amplified by subsequent layers
+      - ||∆z_total|| <= 
+- Accumulated error 
+  
+- if we assume that they have same input 
+  - ∆z = (W - W') · x
+  - with $|∆Wij| <= S_W / 2$

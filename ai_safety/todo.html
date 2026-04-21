@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TODO</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<p>Good question. It is a <strong>bound</strong>, not an equality. Let
+me derive it carefully from scratch.</p>
+<hr />
+<h2 id="setup-at-layer-k">Setup at Layer <span
+class="math inline">\(k\)</span></h2>
+<p>The base model computes:</p>
+<p><span class="math display">\[z^{(k)} = W^{(k)}_\text{float} \cdot
+x^{(k-1)}_\text{float}\]</span></p>
+<p>The quantized model computes:</p>
+<p><span class="math display">\[\hat{z}^{(k)} =
+\hat{W}^{(k)}_\text{float} \cdot
+\hat{x}^{(k-1)}_\text{float}\]</span></p>
+<p>where <span class="math inline">\(\hat{W}^{(k)}_\text{float} =
+W^{(k)} + \Delta W^{(k)}\)</span> and <span
+class="math inline">\(\hat{x}^{(k-1)}_\text{float} = x^{(k-1)} + \Delta
+x^{(k-1)}\)</span>.</p>
+<hr />
+<h2 id="step-1-expand-the-product">Step 1: Expand the Product</h2>
+<p><span class="math display">\[\hat{z}^{(k)} = (W^{(k)} + \Delta
+W^{(k)})(x^{(k-1)} + \Delta x^{(k-1)})\]</span></p>
+<p><span class="math display">\[= W^{(k)} x^{(k-1)} + W^{(k)} \Delta
+x^{(k-1)} + \Delta W^{(k)} x^{(k-1)} + \Delta W^{(k)} \Delta
+x^{(k-1)}\]</span></p>
+<p>So the error before rescaling is:</p>
+<p><span class="math display">\[\Delta z^{(k)}_\text{before rescale} =
+\hat{z}^{(k)} - z^{(k)} = W^{(k)} \Delta x^{(k-1)} + \Delta W^{(k)}
+x^{(k-1)} + \Delta W^{(k)} \Delta x^{(k-1)}\]</span></p>
+<hr />
+<h2 id="step-2-bound-each-term">Step 2: Bound Each Term</h2>
+<p><strong>Term 1 — propagated input error <span
+class="math inline">\(W^{(k)} \Delta x^{(k-1)}\)</span>:</strong></p>
+<p>For output neuron <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[|(W^{(k)} \Delta x^{(k-1)})_i| =
+\left|\sum_j W^{(k)}_{ij} \Delta x^{(k-1)}_j\right| \leq \sum_j
+|W^{(k)}_{ij}| \cdot |\Delta x^{(k-1)}_j|\]</span></p>
+<p><span class="math display">\[\leq \sum_j |W^{(k)}_{ij}| \cdot
+\frac{S_x}{2} = \frac{S_x}{2} \|W^{(k)}_{i,:}\|_1\]</span></p>
+<p>Taking the max over all neurons <span
+class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[\|W^{(k)} \Delta x^{(k-1)}\|_\infty \leq
+\frac{S_x}{2} \|W^{(k)}\|_\infty\]</span></p>
+<p>where <span class="math inline">\(\|W^{(k)}\|_\infty = \max_i
+\|W^{(k)}_{i,:}\|_1\)</span> is the max row sum.</p>
+<p><strong>Term 2 — weight quantization error <span
+class="math inline">\(\Delta W^{(k)} x^{(k-1)}\)</span>:</strong></p>
+<p><span class="math display">\[|(\Delta W^{(k)} x^{(k-1)})_i| \leq
+\sum_j |\Delta W^{(k)}_{ij}| \cdot |x^{(k-1)}_j| \leq \frac{S_W}{2}
+\sum_j |x^{(k-1)}_j| = \frac{S_W}{2} \|x^{(k-1)}\|_1\]</span></p>
+<p>Taking max over <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[\|\Delta W^{(k)} x^{(k-1)}\|_\infty \leq
+\frac{S_W}{2} \|x^{(k-1)}\|_1\]</span></p>
+<p><strong>Term 3 — cross term <span class="math inline">\(\Delta
+W^{(k)} \Delta x^{(k-1)}\)</span>:</strong></p>
+<p><span class="math display">\[|(\Delta W^{(k)} \Delta x^{(k-1)})_i|
+\leq \sum_j |\Delta W^{(k)}_{ij}| \cdot |\Delta x^{(k-1)}_j| \leq \sum_j
+\frac{S_W}{2} \cdot \frac{S_x}{2} = \frac{S_W S_x}{4}
+n_{k-1}\]</span></p>
+<p>where <span class="math inline">\(n_{k-1}\)</span> is the input
+dimension.</p>
+<hr />
+<h2 id="step-3-add-rescaling-error">Step 3: Add Rescaling Error</h2>
+<p>After the multiply, the result is rescaled — another rounding with
+error <span class="math inline">\(\leq S_{x_\text{next}}/2\)</span>.</p>
+<hr />
+<h2 id="step-4-combine-by-triangle-inequality">Step 4: Combine by
+Triangle Inequality</h2>
+<p><span class="math display">\[\|\Delta z^{(k)}\|_\infty \leq
+\underbrace{\frac{S_x}{2} \|W^{(k)}\|_\infty}_\text{propagated input
+error} + \underbrace{\frac{S_W}{2} \|x^{(k-1)}\|_1}_\text{weight quant}
++ \underbrace{\frac{S_W S_x}{4} n_{k-1}}_\text{cross term} +
+\underbrace{\frac{S_{x_\text{next}}}{2}}_\text{rescaling}\]</span></p>
+<p>This is <span class="math inline">\(e^{(k)}\)</span> — a bound,
+derived by applying <span class="math inline">\(|\Delta W_{ij}| \leq
+S_W/2\)</span> and <span class="math inline">\(|\Delta x_j| \leq
+S_x/2\)</span> to each term and summing via triangle inequality.</p>
+</body>
+</html>

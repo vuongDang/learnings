@@ -212,49 +212,143 @@ The quantization process is not a perfect translation and the two models behavio
 
 We want to find a method to formally compute the differences between a base model and its quantized version.
 We are using formal techniques to try to prove epsilon equivalence between two models:
-for all inputs the difference between outputs of the base and quantized model is at most epsilon.
+
+$$
+∀x, |base_model(x) - quantized_model(x)| < ε
+$$
+
 We want to leverage the specificities of zkML quantization such that it improves the existing methods
 that compute a model bounds.
 
 ### Existing techniques to prove epsilon-equivalence
 
+I'm certainly going to use one or a mix of these technique to prove epsilone equivalence between 
+a model and it's quantized version: 
+
 - Bound propagation
 - Abstract interpretation
+  - DeepPoly
 - SMT or MILP solvers
 
+
+```
 Precision
-↑
-| MILP / SMT (complete, exact)
-| BaB
-| Abstract Interp
-| Bound Propagation
-|
-+----------------------------------------→ Speed
+    ↑
+    |                              MILP / SMT (complete, exact)
+    |                    BranchAndBounds
+    |          Abstract Interp
+    |  Interval Propagation
+    |
+    +----------------------------------------→ Speed
+```
 
 #### Bound propagation
 
+- papers: EqBab, CROWN, β-CROWN, α,β-CROWN, SDP-CROWN
 - compute the output bounds based on the previous step bounds recursively up to initial input bounds
 - can be improved with linear relaxation to keep better correlation between variables (CROWN)
 - can be improved with branch and bounds to keep more precision on piecewise functions (EqBAB)
 
 #### Abstract Interpretation
 
+- papers: DeepPoly, AI2 
 - a generalized version of bound propagation
 - possible values are represented by abstract shapes (boxes, plyhedra) and then are executed symbolically
+- choice of abstract domains is a balance between precision and speed
+- abstract domains for computing bounds: intervals, zonotope, polyhedra, semidefinite
+  - intevals is exactly bound propagation
+  - zonotope can express linear relation between variables with a shared core
+  - polyhedra can express relation between variables bound by inequalities
+  - semidefinite can express quadration relations (ex: attention mechanism)
 
 #### SMT and MILP
 
 - transform your problem into a set of constraints and give it to a solver that
   tries to find the values that can solve these constraints
+- complete to the question: "Are these two models equivalence higher than this epsilon?"
 - SMT
+  - papers: Reluplex
   - Solve a yes/no question
   - Find a variables assignment that satisfies a set of arithmetic/boolean constraints
-  - "for all x |model(x) - quantized_model(x)| > epsilon"
+  - "∀x |model(x) - quantized_model(x)| > ε"
     - given model, quantized_model and epsilon
 - MILP
+  - papers: MIPVerify
   - finds the optimal solution over linear constraints on real and integer variables
   - ex: "find best epsilon such that for all x |model(x) - quantized_model(x) > epsilon"
 - SMT vs MILP
   - MILP can solve optimization problem
-  - SMT is more flexible and can solve non-linear relations
-  - MILP only handles ReLU as non-activation functions
+  - SMT is more flexible and can solve non-linear relations 
+  - MILP only handles ReLU as non-activation functions currently
+
+### zkML quantization
+
+####  Goal
+
+zkML quantization goal is to translate floats from the base model to integers in the quantized model 
+to be able to do finite field arithmetic for cryptographic proofs.
+
+#### Simplified view of quantization
+
+A simplified view of quantization is:
+$$w = round(q/S)$$
+- $w$ is a float value in base model
+- $q$ is the quantized value in quantized model 
+- $S$ is the scale factor. 
+  - It is computed either globally, per layer, per tensor.
+  - it's chosen such that all quantized values fit into [0, 2^Q] defined by the quantization scheme
+  
+#### How can we use zkml quantization specificities to ease the computation of ε-equivalence
+
+1. Quantized models operate defined number of integers
+  - discrete number of possible values $[0, 2^Q]$
+  - in theory we can simulate all the potential inputs
+2. Values of quantized parameters are deeply related to the original ones 
+  - in most works target and base model parameters are considered independent 
+  - $w = round(q/S)$
+  - introducing this in bound computation can certainly help the process
+3. Two types of approximations: quantization and approximation of non-linear functions
+  - quantization: $w = round(q/S)$ error due to the rounding operation
+    - this is bounded by $|w - w_{quantized}| = |w - round(q/S) * S| <= S/2$
+  - non-linear functions like ReLU, GelU, Softmax are approximated in zkML
+    often with lookup tables.
+    - these lookup tables approximation is bounded
+    - ex: in zkGPT we're given the metric $∀x, |zk-GeLU(x) - GeLU(x)| <= 0.012$
+  - we already have maximum approximation error for most operations
+4. Quantized models keep the same structure as base one 
+  - weights and inputs keep the same shape 
+  - the architecture stays similar
+  
+### Blockers 
+  
+- Comparing a model operating on float and the other on integers is tough
+  - we can't compute bounds directly on both model values 
+  - maybe we need to rescale integers back to float everytime
+
+### Plan 
+
+- Try out the different verification techniques with quantized models
+  - try to see where where we can cheat computation with quantized specificities
+- Separate errors type computation since they can be computed differently
+- Check papers: SDP-CROWN, Reluplix, AI2, MIPVerify
+  - all those techniques have ups and downs but I still don't understand where
+  the blockers are exactly
+  - potentially combine these approches to get the best of each
+
+## Week 6 
+
+### Reading Marc research
+
+__Lipschitz constant__
+a function $f$ is M-Lipschitz if:
+- $∀a,b |f(a)-f(b)| <= M ·||a-b||$
+- $M$ is the worst case sensitivity 
+- how much can an output change if the input change
+- for a differentiable function, M is the gradient maximum value
+
+__Fisher information matrix__
+Captures how much the output distribution changes when you pertub the parameters
+  $$F(θ) = E[(∂/∂θ log p(x,y; θ)) · (∂/∂θ log p(x,y; θ))ᵀ]$$
+- $∂/∂θ log p(x,y; θ)$ is called the score
+  - it'a vector which shows how likely we are to get $(x, y)$ if we increase parameter $θ_i$
+- the outer product $score · scoreᵀ$

@@ -1,0 +1,472 @@
+\documentclass[11pt, a4paper]{article}
+
+% ── Encoding & fonts ──────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ── Page layout ───────────────────────────────────────────────────
+\usepackage[margin=2.5cm]{geometry}
+
+% ── Math ──────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% ── Theorem environments ──────────────────────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+% ── Graphics & figures ────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% ── Tables ────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+
+% ── Algorithms ────────────────────────────────────────────────────
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% ── Colors ────────────────────────────────────────────────────────
+\usepackage{xcolor}
+\definecolor{linkblue}{RGB}{0, 70, 140}
+
+% ── Hyperlinks ────────────────────────────────────────────────────
+\usepackage[
+    colorlinks=true,
+    linkcolor=linkblue,
+    citecolor=linkblue,
+    urlcolor=linkblue
+]{hyperref}
+
+% ── Bibliography ──────────────────────────────────────────────────
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+
+% ── Misc ──────────────────────────────────────────────────────────
+\usepackage{microtype}       % better text justification
+\usepackage{parskip}         % space between paragraphs instead of indent
+\usepackage{enumitem}        % better lists
+\usepackage{bm}              % bold math
+\usepackage{bbm}             % blackboard bold numbers
+
+% ── Custom commands ───────────────────────────────────────────────
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\inner}[2]{\langle #1, #2 \rangle}
+
+% for your specific notation
+\newcommand{\Wint}{W_{\text{int}}}
+\newcommand{\What}{\hat{W}}
+\newcommand{\SW}{S_W}
+\newcommand{\Sx}{S_x}
+\newcommand{\Sxz}{S_x^{(0)}}
+\newcommand{\DeltaW}{\Delta W}
+\newcommand{\zn}{z^{(n)}}
+\newcommand{\zni}{z^{(n)}_{int}}
+\newcommand{\znhat}{\hat{z}^{(n)}}
+\newcommand{\Wn}{W^{(n)}}
+\newcommand{\Wnhat}{\hat{W}^{(n)}}
+\newcommand{\xn}{x^{(n)}}
+\newcommand{\xnhat}{\hat{x}^{(n)}}
+\newcommand{\SWn}{S_W^{(n)}}
+\newcommand{\Sxn}{S_x^{(n)}}
+\newcommand{\Sn}{S^{(n)}}
+\newcommand{\Sxnpo}{S_x^{(n+1)}}
+\newcommand{\en}{e^{(n)}}
+\newcommand{\enpo}{e^{(n+1)}}
+\newcommand{\xnpo}{x^{(n+1)}}
+\newcommand{\znpo}{z^{(n+1)}}
+\newcommand{\xnpoh}{\hat{x}^{(n+1)}}
+
+% ── Title information ─────────────────────────────────────────────
+\title{
+    \vspace{-1cm}
+    % {\large Midterm Report} \\[0.5em]
+    {\LARGE Analysys of Quantization Error} \\[0.5em]
+    % {\large for zkML Applications}
+}
+% \author{
+%     Alex \\
+%     \small Institution \\
+%     \small \href{mailto:your@email.com}{your@email.com}
+% }
+% \date{\today}
+
+% ══════════════════════════════════════════════════════════════════
+\begin{document}
+% ══════════════════════════════════════════════════════════════════
+
+\maketitle
+
+% \begin{abstract}
+%     Write your abstract here. Typically 150--250 words summarizing
+%     the problem, approach, and preliminary results.
+% \end{abstract}
+
+\tableofcontents
+\newpage
+
+% ──────────────────────────────────────────────────────────────────
+% \section{Introduction}
+% % ──────────────────────────────────────────────────────────────────
+
+% Introduce the problem, motivation, and contributions.
+
+% % ──────────────────────────────────────────────────────────────────
+% \section{Background}
+% % ──────────────────────────────────────────────────────────────────
+
+% \subsection{Zero-Knowledge Machine Learning}
+
+% \subsection{Neural Network Quantization}
+
+% \subsection{Equivalence Verification}
+
+% ──────────────────────────────────────────────────────────────────
+\section{Error Analysis for Quantization in Linear Layers}
+% ──────────────────────────────────────────────────────────────────
+
+\subsection{Linear Layers}
+
+We simplify linear layers to operation:
+$$ z = W \cdot x $$
+
+To add the bias in the error analysis isn't hard.
+
+\subsection{Models}
+
+\begin{itemize}
+\item Description of how the model behaves through an inference
+\item We simulate models containing a sequence of $L$ linear layers
+\item $x^{(0)}$ the original input and $z^{(L)}$ final output
+\item Quantization bring new steps
+\begin{itemize}
+	\item Quantization of the input
+	\item After matrix mult, the output is rescaled to fit the chosen quantization range
+\end{itemize}
+\end{itemize}
+
+\paragraph{Base model}
+$$
+x^{(0)} \xrightarrow{\text{linear}} z^{(0)} \xrightarrow{\text{=}} x^{(1)} \rightarrow z^{(1)} \rightarrow ... \rightarrow z^{(L)}
+$$
+
+
+\paragraph{Quantized model}
+$$
+x^{(0)}
+\xrightarrow{\text{quantization}} x^{(0)}_{int}
+\xrightarrow{\text{linear}} z^{(0)}_{int}
+\xrightarrow{\text{rescaling}} x^{(1)}_{int}
+\rightarrow z^{(1)}_{int} \rightarrow ... \rightarrow z^{(L)}_{int}
+\xrightarrow{\text{dequantization}} \hat{z}^{(L)}
+$$
+
+\paragraph{Virtual quantized model converted back to floats for comparison with base model}
+$$
+x^{(0)}
+\xrightarrow{\text{quantization}} \hat{x}^{(0)}
+\xrightarrow{\text{linear}} \hat{z}^{(0)}
+\xrightarrow{\text{rescaling}} \hat{x}^{(1)} \rightarrow \hat{z}^{(1)} \rightarrow ...
+\rightarrow \hat{z}^{(L)}
+$$
+
+
+
+\subsection{Error sources}
+
+Quantization introduce approximation error when:
+\begin{itemize}
+    \item quantizing input,
+    \item quantizing parameters
+    \item rescaling output of any matrix multiplication to keep them within quantization range
+    \item clipping when value overflows the designated range
+    \item non-linear layers approx (see in next section)
+\end{itemize}
+
+\subsubsection{Parameter Quantization}
+The basic quantization relationship for parameters $W$:
+
+\paragraph{Definition}
+\begin{itemize}
+    \item $W$ is the parameter of base model
+    \item $\Wint$ is the quantized parameter
+    \item $\What$ is the quantized parameter converted back to floats for comparison with base model $W$
+    \item $\SW$ is the scaling factor for $W$ and is computed once during the quantization process
+\end{itemize}
+
+$$    \Wint = round\!\left(\frac{W}{\SW}\right)$$
+
+$$
+    \What = \Wint \cdot \SW = round\!\left(\frac{W}{\SW}\right) \cdot \SW
+$$
+
+\paragraph{Bounds}
+
+Special property between base and quantized parameters.
+
+\begin{equation}
+ \forall i,j \quad \DeltaW_{ij} = \norm{W_{ij} - \What_{ij}}_{\infty}
+%= | W - round\!\left(\frac{W}{\SW}\right) \cdot \SW |
+\leq \frac{\SW}{2}
+\end{equation}
+
+Proof in Annex. (TODO)
+
+
+\subsubsection{Input Quantization}
+
+\paragraph{Definition}
+\begin{itemize}
+    \item this is a special case of rescaling
+    \item $x$ is the input of base model
+    \item $x_{int}$ is the quantized input
+    \item $\hat{x}$ is the quantized input converted back to floats for comparison with base model $x$
+    \item $\Sxz$ is the scaling factor for $x$ and is \emph{computed once during a calibration phase}
+\end{itemize}
+
+$$    x_{int} = round\!\left(\frac{x}{\Sxz}\right)$$
+
+$$
+    \hat{x} = x_{int} \cdot \Sx = round\!\left(\frac{x}{\Sxz}\right) \cdot \Sxz
+$$
+
+
+\paragraph{Bounds}
+
+\begin{equation}
+ \Delta x = \norm{ x - \hat{x}}_{\infty}
+%= | W - round\!\left(\frac{W}{\SW}\right) \cdot \SW |
+\leq \frac{\Sxz}{2}
+\end{equation}
+
+\paragraph{Proof}
+This is a property of the rounding operation.
+$$|a - round(\frac{a}{b}) \cdot b| \leq \frac{b}{2}$$
+
+
+\subsubsection{Rescaling}
+\begin{itemize}
+	\item Happens after linear layers $z^{(n)} = W^{(n)} \cdot \xn$
+	\item output $z^{(n)}$ is at scale $\SWn \cdot \Sxn$ and must scaling must be reset
+	\item then scale back to designated range with $\Sxnpo$
+	\item $\Sxnpo$ is the scaling factor for this linear layer and is \emph{computed once during a calibration phase}
+\end{itemize}
+
+$$ \xnpo_{int} = round\!\left(\frac{\zn_{int} \cdot \SWn \cdot \Sxn }{\Sxnpo}\right) = round\!\left(\frac{\znhat}{\Sxnpo}\right)$$
+
+$$
+    \xnpoh = \xnpo_{int} \cdot \Sxnpo = round\!\left(\frac{\znhat}{\Sxnpo}\right) \cdot \Sxnpo
+$$
+
+\paragraph{Bounds}
+
+\begin{equation}
+ \Delta \xn = \norm{\xn - \xnhat}_{\infty}
+\leq \frac{\Sxn}{2}
+\end{equation}
+
+\paragraph{Note}
+\begin{itemize}
+	\item Input quantization is a special case of rescaling
+	\item that's why we name rescale factor for input as $\Sx^{(0)}$
+\end{itemize}
+
+
+\subsubsection{Clipping}
+
+\begin{itemize}
+	\item Happens if some value overflows from designated range
+	\item this should not happen if scale factors are chosen correctly
+	\item but on some extreme inputs not accounted for it may happen
+	\item in this study we have assumed that clipping does not occur and omitted it
+\end{itemize}
+
+\subsection{Computing error for a linear layer}
+
+\begin{itemize}
+	\item we compute error $\en$ for layer $n$
+	\item in the quantized model a linear layer consists of the linear multiplication and the rescaling
+	\item the error is the difference between base and the quantized model reverted back to floats
+	\item at layer $n$: $\Delta \xnpo = |\xnpo - \xnpoh|$
+	\begin{itemize}
+    	\item  base model:
+    	$x^{(n)} \xrightarrow{\text{linear}} z^{(n)} \xrightarrow{\text{=}} x^{(n+1)}$
+    	\item quantized model: $x^{(n)}_{int}
+    	\xrightarrow{\text{linear}} z^{(n)}_{int}
+    	\xrightarrow{\text{rescaling}} x^{(n+1)}_{int} $
+    	\item quantized model reversed to floats: $\hat{x}^{(n)}
+    	\xrightarrow{\text{linear}} \hat{z}^{(n)}
+    	\xrightarrow{\text{rescaling}} \hat{x}^{(n+1)} $
+	\end{itemize}
+	\item we name the error bound: $\en$
+\end{itemize}
+
+\paragraph{Result}
+\begin{equation}
+\boxed{
+\Delta \xnpo \leq
+\enpo =
+\underbrace{\frac{\Sxn}{2} \cdot \norm{\Wn}_{\infty}}_{\text{accumulated error}} +
+\underbrace{\frac{\SWn}{2} \cdot \norm{\xn}_1}_{\text{weight quant}} +
+\underbrace{\frac{\SWn \cdot \Sxn}{4} \cdot d_{in}^{(n)}}_{\text{cross term}} +
+\underbrace{\frac{\Sxnpo}{2}}_{\text{rescaling}}
+}
+\end{equation}
+$\text{with } d_{in}^{(n)} \text{ the input dimension of layer } n$
+
+\paragraph{Proof}
+In annex.
+
+\paragraph{Remark}
+\begin{itemize}
+\item Bound on error $\Delta \xnpo$ depends on previous input $x^{(n)}$
+\item Some implementations have global quantization $\Sxn = \SWn = S$
+\item In this case, we can simplify our bounds to
+
+$$
+\Delta \xnpo \leq
+\frac{S}{2} \left( \norm{\xn}_1 + \norm{\Wn}_{\infty} + 1 \right)
+\ \frac{S^{2}}{4} \cdot d_{in}^{(n)}
+$$
+$\text{with } d_{in}^{(n)} \text{ the input dimension of layer } n$
+
+\end{itemize}
+
+\subsection{Total error propagation}
+
+\begin{itemize}
+    \item The error from previous layer is amplified by matrix multiplication
+\end{itemize}
+The total error at layer $L$ satisfies:
+\begin{equation}
+\boxed{
+    \norm{\Delta x^{(L)}}_{\infty} \leq
+    \sum_{k=1}^{L}
+    \left(\prod_{\ell=k+1}^{L} \norm{W^{(\ell)}}_\infty\right)
+    \cdot e^{(k)}
+    }
+\end{equation}
+
+\paragraph{Proof}
+By induction. In annex. (TODO)
+
+% ──────────────────────────────────────────────────────────────────
+\section{Augmenting models with non-linear layers}
+% ──────────────────────────────────────────────────────────────────
+
+$$
+x^{(0)}
+\xrightarrow{\text{quantization}} \hat{x}^{(0)}
+\xrightarrow{\text{linear}} \hat{z}^{(0)}
+\xrightarrow{\text{rescaling}} \hat{x}^{(1)} \rightarrow \hat{z}^{(1)} \rightarrow ...
+\rightarrow \hat{z}^{(L)}
+$$
+%
+\subsection{ReLU}
+ReLU does not bring new approximation since it works fine on integers.
+\begin{itemize}
+	\item Case 1: Both neurons are active -> Effective error pass through unchanged
+	\item Case 2: Both neurons are inactive -> Effective error is killed and is 0
+	\item Case 3: Activation flip (one active and one inactive) -> Effective error is reduced
+\end{itemize}
+
+\subsection{Others}
+
+\begin{itemize}
+	\item GELU, SiLU, Softmax, LayerNorm
+	\item not computable on integers and need to be approximated
+	\item this adds a new source of errors
+	\item recent zkml works uses lookup tables for speed and precision improvement
+	\item see NanoZK who boasts really low error on their lookups
+\end{itemize}
+
+
+\section{Annexes}
+
+\subsection{Proof of error bounds on a single layer}
+
+$$
+\boxed{
+\Delta \xnpo \leq
+\underbrace{\Wn \cdot \frac{\Sxn}{2}}_{\text{accumulated error}} +
+\underbrace{\frac{\SWn}{2} \cdot \xn}_{\text{weight quant}} +
+\underbrace{\frac{\SWn \cdot \Sxn}{4}}_{\text{cross term}} +
+\underbrace{\frac{\Sxnpo}{2}}_{\text{rescaling}}
+}
+$$
+
+\subsubsection{Rescaling error}
+\paragraph{Result}
+$$\Delta \xnpo = |\Delta \zn - \Delta \Sxnpo|$$
+
+\paragraph{Proof}
+\begin{align*}
+\Delta \xnpo &= \norm{\xnpo - \xnpoh}_{\infty} \\
+&= \norm{\zn - \xnpo_{int} \cdot \Sxnpo}_{\infty} \\
+&= \norm{\zn - round\!\left(\frac{\znhat}{\Sxnpo}\right) \cdot \Sxnpo }_{\infty} \\
+&= \norm{\zn - round\!\left(\frac{\znhat}{\Sxnpo}\right) \cdot \Sxnpo }_{\infty} \\
+&\intertext{Error due to rounding is represented by  $\Delta \Sxnpo$}  \\
+&= \norm{\zn - \left(\frac{\znhat}{\Sxnpo} \cdot \Sxnpo + \Delta \Sxnpo\right) }_{\infty} \\
+&= \norm{\zn - \znhat - \Delta \Sxnpo}_{\infty} \\
+&= \norm{\Delta \zn - \Delta \Sxnpo}_{\infty} \\
+&\leq \norm{\Delta \zn}_{\infty} + \norm{\Delta \Sxnpo}_{\infty} \\
+&\leq \norm{\Delta \zn}_{\infty} + \frac{\Sxnpo}{2}
+\end{align*}
+
+\subsubsection{Accumulated error $\Delta \zn$}
+
+\begin{itemize}
+    \item we define $\Wnhat = \Wn + \Delta \Wn$
+	\item we define $\xnhat = \xn + \Delta \xn$
+\end{itemize}
+
+\begin{align*}
+\Delta \zn &= \norm{\zn - \znhat}_{\infty} \\
+&= \norm{ \Wn \cdot \xn - \Wnhat \cdot \xnhat }_{\infty} \\
+&= \norm{\Wn \cdot \xn - (\Wn + \Delta \Wn) \cdot (\xn + \Delta \xn)}_{\infty} \\
+&= \norm{\Delta \Wn \cdot \xn + \Wn \cdot \Delta \xn + \Delta \Wn \cdot \Delta \xn}_{\infty} \\
+&\leq \norm{\Delta \Wn \cdot \xn}_{\infty} + \norm{\Wn \cdot \Delta \xn}_{\infty} + \norm{\Delta \Wn \cdot \Delta \xn}_{\infty} \\
+&\leq \max_i(|(\Delta \Wn \cdot \xn)_i|) + \max_i(|(\Wn \cdot \Delta \xn)_i|) + \max_i(|(\Delta \Wn \cdot \Delta \xn)_i|) \\
+&\leq \max_i(|\sum_{j} \Delta \Wn_{ij} \cdot \xn_j)|) + \max_i(|\sum_{j} \Wn_{ij} \cdot \Delta \xn_i|) + \max_i(|\sum_{j} \Delta \Wn_{ij} \cdot \Delta \xn_i|) \\
+&\leq \max_i(\sum_{j} |\Delta \Wn_{ij}| \cdot |\xn_j|) + \max_i(\sum_{j} |\Wn_{ij}| \cdot |\Delta \xn_i|) + \max_i(\sum_{j} |\Delta \Wn_{ij}| \cdot |\Delta \xn_i|) \\
+&\leq \max_i(\sum_{j} |\Delta \Wn_{ij}| \cdot |\xn_j|) + \max_i(\sum_{j} |\Wn_{ij}| \cdot |\Delta \xn_i|) + \max_i(\sum_{j} |\Delta \Wn_{ij}| \cdot |\Delta \xn_i|) \\
+&\leq \frac{\SWn}{2} \max_i(\sum_{j} |\xn_j|) + \frac{\Sxn}{2}\max_i(\sum_{j} |\Wn_{ij}|) + \sum_{j} \frac{\Sxn}{2} \frac{\SWn}{2} \\
+&\leq \frac{\SWn}{2} \cdot \norm{\xn}_1 +  \frac{\Sxn}{2} \cdot \norm{\Wn}_{\infty} + \frac{\SWn \cdot \Sxn}{4} \cdot d_{in}^{(n)}
+\end{align*}
+$
+\text{with } d_{in}^{(n)} \text{ the input dimension of layer } n
+$
+
+\subsubsection{Final result}
+$$
+\Delta \xnpo \leq
+\frac{\SWn}{2} \cdot \norm{\xn}_1 +  \frac{\Sxn}{2} \cdot \norm{\Wn}_{\infty} + \frac{\SWn \cdot \Sxn}{4} \cdot d_{in}^{(n)} + \frac{\Sxnpo}{2}
+$$
+$\text{with } d_{in}^{(n)} \text{ the input dimension of layer } n$
+% ──────────────────────────────────────────────────────────────────
+
+% ──────────────────────────────────────────────────────────────────
+\printbibliography
+% ──────────────────────────────────────────────────────────────────
+
+\end{document}
