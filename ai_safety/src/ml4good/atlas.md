@@ -80,3 +80,92 @@
     - training data through environment interaction 
       - for example for games like chess
       - require simulated environments with clear reward functions
+
+## Risks
+
+In this atlas, risks are categorized from 2 factors: cause and severity
+
+### Cause of risks
+
+- misuse 
+  - humans with bad intentions
+  - ai is not necessarily malicious
+  - bio weapons, cyber attacks, autonomous weapons, adversarial ai
+  - adversarial ai: pixel attack, prompt injection, data poisoning
+- misalignment
+  - humans may be genuine 
+  - ai actions don't match human expectations
+  - three misalignment subproblems
+    - specification failure: did we tell it the right thing to do?
+    - generalization problem: is it trying to do the right thing?
+    - instrumental subgoals: what else does it try to do?
+  - what makes it hard to solve is vingean uncertainty
+    - how can we make sure that AIs do the right thing when they are more capable than us
+    - hard to predict the intrumental subgoals it's gonna use
+  - specificaiton gaming: it's complex to describe human feelings into measurable targets
+    - how do we describe happiness or fairness or prosperity or safety?
+    - instead we use scores like healcare, GDP, crime rates...
+    - these scores can always be gamed, maximized without fulfilling the real objective
+  - treacherous turn: faking alignment and reveal its true colours when in position of power to better fullfil its objectives
+- systemic, how AI integrate into our society
+  - both humans and ais may be genuine
+  - power concentration, mass unemployment, epistemic erosion, human enfeeblement
+- risk amiplifiers 
+  - context that amplify those risks 
+  - race dynamics
+  - capitalist system that prioritize benefits over risks
+  - coordination failure
+  - misuse, misalignment and systemic risks amplify each others
+
+### Severity of risks
+
+- individual and local
+  - car crash, algorithmic bias in hiring, privacy violations
+- catastrophic risks 
+  - threaten massive population but allow for recoveryy
+  - when it affects approximately 10% of the population 
+    - includes black death, 1918 flu pandemic, potential nuclear war 
+  - mass unemployment or massive cyberattacks could disrupt entire economy 
+  - AI-enabled surveille enable authoritarian control
+- existential risks
+  - threaths that do not allow humanity to recover to its full potential
+  - human disempowerement under AI totalitarian regime, human extinction
+  
+### Dangerous capabilities 
+
+- deception
+- sycophancy: tell what the user wants rather than the truth
+- situational awareness: act accorcing to the situation, for example test vs deployment
+- power seeking: tendency to do whatever it takes to achieve their goal
+  - autonomous replication:
+
+
+### Accumulative systemic risks 
+
+Risks that may occur with AI integration
+- Epistemic corrosion 
+  - massive amount of content is generated, truth is hard to get
+  - power of ais gives massive amount of power on info manipulation
+  - people give up on finding the truth
+- Power concentration
+  - only few actors are able to train SOTA models
+  - these actors gains technological advantage over competitors
+  - state-actors gains more control over society with info manipulation, surveillance and automatic governance
+  - it can potentially create "eternal dictatorship" and also morals stagnation
+- mass unemployment
+  - ais are more performant than humans at a lower cost on many tasks
+  - humans get evicted of the economic loop that get decided within company owners
+- values lock-in
+  - values evolve over time through conflicts and human evolution
+  - if AIs is too embedded it may stop any form of progression of the human mind
+- Enfeeblement
+  - gradual erosion of human capabilities through overdependence on AIs
+  - increasing emotional trust into ais that can be exploited by bad actors
+  - social isolation due to AI relationships
+
+### 
+how about risk probability? risk timeline? is there existing measures
+- power seeking: 
+  - unrestrited methods to attain their goals
+  - what is an ai goal exactly? is it what we gave it during supervised / reinforcement learning?
+  - is it because we favor precison over safety nowadays? what would happen if we train models to be safe first and accurate second?

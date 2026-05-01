@@ -1,5 +1,18 @@
 # ZKML
 
+## Subfields 
+
+- Inference Verification
+  - most mature area 
+    - ZEN, zkGPT, zktorch...
+- Training verification
+  - ZKAudit, zkDL
+- Online metrics verfication
+  - verify live model behavior post-deployment
+- trustworthy AI
+  - trustless auditing of training and data properties 
+  - ZKAudit
+
 ## Bottlenecks 
 
 - Prover overhead
