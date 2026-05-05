@@ -2,6 +2,7 @@
 # Compiled output
 *.pdf
 !ai_safety/src/spar/report/report.pdf
+!ai_safety/src/resume_alex_dang.pdf
 *.dvi
 *.ps
 
