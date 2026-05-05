@@ -31,3 +31,7 @@ Ai Safety: make sure nothing "bad" can happen with AI
 
 - Flashcards:
   [https://gemini.google.com/share/384b0bce2b0c](https://gemini.google.com/share/384b0bce2b0c)
+
+## Resume
+
+[Resume (PDF)](resume_alex_dang.pdf)
