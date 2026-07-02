@@ -37,6 +37,8 @@ jobs:
       - name: Build AI Safety book
         run: mdbook build
         working-directory: ai_safety
+      - name: Copy PDFs to AI Safety book output
+        run: cp -r ai_safety/src/pdf ai_safety/book/pdf
       - name: Build cryptography book
         run: mdbook build
         working-directory: crypto
