@@ -34,4 +34,12 @@ Ai Safety: make sure nothing "bad" can happen with AI
 
 ## Resume
 
-[Resume (PDF)](resume_alex_dang.pdf)
+[Resume (PDF)](pdf/resume_alex_dang.pdf)
+
+## Research
+
+### ICML2026 Hypothesis Testing workshop
+
+- [Trust from afar: Evaluating remote model instances (pdf)](pdf/challenge_framework.pdf)
+- [Equivalence Testing of Parametric Models via the Effective Dimension (pdf)](pdf/sample_complexity.pdf)
+- [Detecting 4-Bit Adversaries at the Token Level (pdf)](pdf/detecting_4bit_adversaries.pdf)
